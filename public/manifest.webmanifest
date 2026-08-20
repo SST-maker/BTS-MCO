@@ -1,12 +1,31 @@
 {
-  "name":"NCR Solutions — MCO Quiz Arena",
-  "short_name":"MCO Quiz",
-  "start_url":"/",
-  "display":"standalone",
-  "background_color":"#07111f",
-  "theme_color":"#2997ff",
-  "icons":[
-    {"src":"/assets/icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"/assets/icon-512.png","sizes":"512x512","type":"image/png"}
+  "name": "NCR Solutions — MCO Quiz Arena",
+  "short_name": "MCO Quiz",
+  "description": "Quiz interactif BTS MCO — ADOC & Gestion opérationnelle",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F7F9FC",
+  "theme_color": "#155BFF",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

@@ -117,8 +117,12 @@ const server=http.createServer(async (req,res)=>{
       res.writeHead(200,{'Content-Type':'image/svg+xml','Cache-Control':'no-store'}); return res.end(svg);
     } catch(e){ return send(res,500,{error:'QR impossible',detail:e.message}); }
   }
-  if(p==='/api/health') return send(res,200,{ok:true,version:'3.0.0',questions:questions.length,sessions:sessions.size});
+  if(p==='/api/health') return send(res,200,{ok:true,version:'4.0.0',questions:questions.length,sessions:sessions.size});
   if(p==='/api/catalog') return send(res,200,catalog());
+  if(p==='/api/dashboard') {
+    const items=[...sessions.values()].sort((a,b)=>b.createdAt-a.createdAt).map(s=>{const ps=[...s.players.values()];const maxPossible=Math.max(1,s.questions.length*200);const avgRaw=ps.length?ps.reduce((sum,x)=>sum+x.score,0)/ps.length:0;return {code:s.code,title:s.title,mode:s.mode,status:s.status,players:ps.length,currentIndex:s.currentIndex,totalQuestions:s.questions.length,createdAt:s.createdAt,averageScore:Math.round(Math.min(100,avgRaw/maxPossible*100))};});
+    const liveSessions=items.filter(x=>x.status!=='ended').length,totalPlayers=items.reduce((a,x)=>a+x.players,0),scored=items.filter(x=>x.players>0),averageScore=scored.length?Math.round(scored.reduce((a,x)=>a+x.averageScore,0)/scored.length):0;return send(res,200,{version:'4.0.0',questions:questions.length,totalSessions:items.length,liveSessions,totalPlayers,averageScore,sessions:items});
+  }
   if(p==='/api/questions/count') return send(res,200,{count:questions.length});
   if(p==='/api/sessions' && req.method==='POST'){
     try{
@@ -178,7 +182,7 @@ const server=http.createServer(async (req,res)=>{
 server.listen(PORT,'0.0.0.0',()=>{
   const nets=os.networkInterfaces(); const ips=[];
   for(const list of Object.values(nets)) for(const n of (list||[])) if(n.family==='IPv4'&&!n.internal) ips.push(n.address);
-  console.log(`\nMCO Quiz Arena V3 démarré`);
+  console.log(`\nMCO Quiz Arena V4 démarré`);
   console.log(`Local : http://localhost:${PORT}`);
   for(const ip of ips) console.log(`Réseau : http://${ip}:${PORT}`);
   console.log(`Questions disponibles : ${questions.length}\n`);
