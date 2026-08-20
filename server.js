@@ -35,7 +35,7 @@ function body(req){
 }
 function publicSession(s, playerId=null, isHost=false){
   const q=s.currentIndex>=0?s.questions[s.currentIndex]:null;
-  const publicQ=q?{id:q.id,year:q.year,subject:q.subject,chapter:q.chapter,lesson:q.lesson,difficulty:q.difficulty,prompt:q.prompt,choices:q.choices}:null;
+  const publicQ=q?{id:q.id,year:q.year,subject:q.subject,chapter:q.chapter,chapterTitle:q.chapterTitle||'',lesson:q.lesson,lessonTitle:q.lessonTitle||'',difficulty:q.difficulty,type:q.type||'',prompt:q.prompt,choices:q.choices}:null;
   const player=playerId?s.players.get(playerId):null;
   return {
     code:s.code, mode:s.mode, status:s.status, title:s.title,
@@ -83,8 +83,12 @@ function catalog(){
   for(const q of questions){
     out.years[q.year]??={subjects:{}};
     out.years[q.year].subjects[q.subject]??={chapters:{}};
-    out.years[q.year].subjects[q.subject].chapters[q.chapter]??={lessons:{}};
-    out.years[q.year].subjects[q.subject].chapters[q.chapter].lessons[q.lesson]=(out.years[q.year].subjects[q.subject].chapters[q.chapter].lessons[q.lesson]||0)+1;
+    out.years[q.year].subjects[q.subject].chapters[q.chapter]??={title:q.chapterTitle||'',lessons:{}};
+    const ch=out.years[q.year].subjects[q.subject].chapters[q.chapter];
+    if(!ch.title && q.chapterTitle) ch.title=q.chapterTitle;
+    ch.lessons[q.lesson]??={title:q.lessonTitle||'',count:0};
+    if(!ch.lessons[q.lesson].title && q.lessonTitle) ch.lessons[q.lesson].title=q.lessonTitle;
+    ch.lessons[q.lesson].count+=1;
   }
   return out;
 }
@@ -118,10 +122,28 @@ const server=http.createServer(async (req,res)=>{
     } catch(e){ return send(res,500,{error:'QR impossible',detail:e.message}); }
   }
   if(p==='/api/health') return send(res,200,{ok:true,version:'4.0.0',questions:questions.length,sessions:sessions.size});
+  if(p==='/api/dashboard'){
+    const all=[...sessions.values()];
+    const active=all.filter(x=>x.status!=='ended');
+    const players=all.reduce((n,x)=>n+x.players.size,0);
+    const scores=all.flatMap(x=>[...x.players.values()].map(p=>p.score));
+    const avgScore=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+    const recentSessions=[...all].sort((a,b)=>b.createdAt-a.createdAt).slice(0,6).map(x=>({code:x.code,title:x.title,status:x.status,players:x.players.size,mode:x.mode,createdAt:x.createdAt}));
+    return send(res,200,{questions:questions.length,totalSessions:all.length,activeSessions:active.length,totalPlayers:players,avgScore,recentSessions});
+  }
   if(p==='/api/catalog') return send(res,200,catalog());
   if(p==='/api/dashboard') {
-    const items=[...sessions.values()].sort((a,b)=>b.createdAt-a.createdAt).map(s=>{const ps=[...s.players.values()];const maxPossible=Math.max(1,s.questions.length*200);const avgRaw=ps.length?ps.reduce((sum,x)=>sum+x.score,0)/ps.length:0;return {code:s.code,title:s.title,mode:s.mode,status:s.status,players:ps.length,currentIndex:s.currentIndex,totalQuestions:s.questions.length,createdAt:s.createdAt,averageScore:Math.round(Math.min(100,avgRaw/maxPossible*100))};});
-    const liveSessions=items.filter(x=>x.status!=='ended').length,totalPlayers=items.reduce((a,x)=>a+x.players,0),scored=items.filter(x=>x.players>0),averageScore=scored.length?Math.round(scored.reduce((a,x)=>a+x.averageScore,0)/scored.length):0;return send(res,200,{version:'4.0.0',questions:questions.length,totalSessions:items.length,liveSessions,totalPlayers,averageScore,sessions:items});
+    const items=[...sessions.values()].sort((a,b)=>b.createdAt-a.createdAt).map(s=>{
+      const ps=[...s.players.values()];
+      const maxPossible=Math.max(1,s.questions.length*200);
+      const avgRaw=ps.length?ps.reduce((sum,x)=>sum+x.score,0)/ps.length:0;
+      return {code:s.code,title:s.title,mode:s.mode,status:s.status,players:ps.length,currentIndex:s.currentIndex,totalQuestions:s.questions.length,createdAt:s.createdAt,averageScore:Math.round(Math.min(100,avgRaw/maxPossible*100))};
+    });
+    const liveSessions=items.filter(x=>x.status!=='ended').length;
+    const totalPlayers=items.reduce((a,x)=>a+x.players,0);
+    const scored=items.filter(x=>x.players>0);
+    const averageScore=scored.length?Math.round(scored.reduce((a,x)=>a+x.averageScore,0)/scored.length):0;
+    return send(res,200,{version:'4.0.0',questions:questions.length,totalSessions:items.length,liveSessions,totalPlayers,averageScore,sessions:items});
   }
   if(p==='/api/questions/count') return send(res,200,{count:questions.length});
   if(p==='/api/sessions' && req.method==='POST'){
