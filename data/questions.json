@@ -1,0 +1,1020 @@
+[
+  {
+    "id": "ADOC1-1",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.1",
+    "lesson": "1.1 Omnicanal",
+    "difficulty": "intermédiaire",
+    "prompt": "Quel élément caractérise le mieux une unité commerciale omnicanale ?",
+    "choices": [
+      "Un seul canal de vente",
+      "Des canaux séparés sans lien",
+      "Des canaux connectés autour du client",
+      "Uniquement le magasin physique"
+    ],
+    "answer": 2,
+    "explanation": "Une unité commerciale omnicanale relie ses canaux pour offrir un parcours fluide au client."
+  },
+  {
+    "id": "ADOC1-2",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.1",
+    "lesson": "1.2 Parcours client",
+    "difficulty": "intermédiaire",
+    "prompt": "Dans un parcours omnicanal, quel risque majeur apparaît si le stock site et magasin ne sont pas synchronisés ?",
+    "choices": [
+      "Une hausse automatique de la marge",
+      "Une rupture de parcours client",
+      "Une baisse des coûts fixes",
+      "Une meilleure fidélité"
+    ],
+    "answer": 1,
+    "explanation": "Une information incohérente entre canaux crée une rupture de parcours et dégrade la confiance."
+  },
+  {
+    "id": "ADOC1-3",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.2",
+    "lesson": "2.1 Marché",
+    "difficulty": "intermédiaire",
+    "prompt": "Le marché d’une entreprise correspond d’abord à…",
+    "choices": [
+      "ses concurrents directs",
+      "l’ensemble des fournisseurs",
+      "la rencontre entre une offre et une demande",
+      "son chiffre d’affaires"
+    ],
+    "answer": 2,
+    "explanation": "Le marché se définit par la rencontre entre une offre et une demande."
+  },
+  {
+    "id": "ADOC1-4",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.2",
+    "lesson": "2.2 Diagnostic",
+    "difficulty": "intermédiaire",
+    "prompt": "Dans une analyse PESTEL, le facteur « évolution du pouvoir d’achat » relève surtout de la dimension…",
+    "choices": [
+      "politique",
+      "économique",
+      "socioculturelle",
+      "légale"
+    ],
+    "answer": 1,
+    "explanation": "Le pouvoir d’achat est un facteur économique."
+  },
+  {
+    "id": "ADOC1-5",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.3",
+    "lesson": "3.1 Segmentation",
+    "difficulty": "intermédiaire",
+    "prompt": "Segmenter consiste à…",
+    "choices": [
+      "choisir un seul client",
+      "regrouper des clients ayant des caractéristiques proches",
+      "vendre plus cher",
+      "supprimer les concurrents"
+    ],
+    "answer": 1,
+    "explanation": "La segmentation regroupe des clients homogènes selon des critères pertinents."
+  },
+  {
+    "id": "ADOC1-6",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.3",
+    "lesson": "3.2 Ciblage",
+    "difficulty": "intermédiaire",
+    "prompt": "Cibler consiste à…",
+    "choices": [
+      "regrouper tous les clients",
+      "sélectionner le ou les segments à servir en priorité",
+      "calculer une marge",
+      "rédiger une facture"
+    ],
+    "answer": 1,
+    "explanation": "Le ciblage suit la segmentation : on choisit le segment à viser en priorité."
+  },
+  {
+    "id": "ADOC1-7",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.3",
+    "lesson": "3.3 Persona",
+    "difficulty": "intermédiaire",
+    "prompt": "À quoi sert principalement un persona ?",
+    "choices": [
+      "À calculer la TVA",
+      "À rendre la cible concrète pour adapter l’action commerciale",
+      "À mesurer le BFR",
+      "À rédiger un contrat"
+    ],
+    "answer": 1,
+    "explanation": "Le persona aide à visualiser une cible-type pour adapter message, offre et canaux."
+  },
+  {
+    "id": "ADOC1-8",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.4",
+    "lesson": "4.1 Benchmark",
+    "difficulty": "intermédiaire",
+    "prompt": "Un benchmark sert surtout à…",
+    "choices": [
+      "copier un concurrent au hasard",
+      "comparer plusieurs acteurs avec des critères communs",
+      "augmenter automatiquement le CA",
+      "éviter toute décision"
+    ],
+    "answer": 1,
+    "explanation": "Le benchmark compare avec des critères identiques pour décider et se positionner."
+  },
+  {
+    "id": "ADOC1-9",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.5",
+    "lesson": "5.1 Formes de commerce",
+    "difficulty": "intermédiaire",
+    "prompt": "Dans un réseau intégré, l’unité commerciale dispose généralement…",
+    "choices": [
+      "d’une autonomie totale",
+      "d’aucune clientèle",
+      "d’un cadre commun défini par l’enseigne",
+      "d’aucune contrainte"
+    ],
+    "answer": 2,
+    "explanation": "Le réseau intégré fonctionne avec une politique d’enseigne et des règles communes."
+  },
+  {
+    "id": "ADOC1-10",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.6",
+    "lesson": "6.1 Distribution",
+    "difficulty": "intermédiaire",
+    "prompt": "Le canal de distribution correspond…",
+    "choices": [
+      "au flux d’informations internes",
+      "au chemin emprunté par le produit jusqu’au client",
+      "au budget communication",
+      "au tableau de bord"
+    ],
+    "answer": 1,
+    "explanation": "Le canal décrit le chemin entre producteur/distributeur et client."
+  },
+  {
+    "id": "ADOC1-11",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.7",
+    "lesson": "7.1 Assortiment",
+    "difficulty": "intermédiaire",
+    "prompt": "La largeur de l’assortiment correspond à…",
+    "choices": [
+      "la quantité vendue",
+      "le nombre de familles de produits",
+      "le nombre de clients",
+      "la marge commerciale"
+    ],
+    "answer": 1,
+    "explanation": "Largeur = nombre de familles ; profondeur = nombre de références dans chaque famille."
+  },
+  {
+    "id": "ADOC1-12",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.7",
+    "lesson": "7.2 Profondeur",
+    "difficulty": "intermédiaire",
+    "prompt": "La profondeur de l’assortiment correspond à…",
+    "choices": [
+      "la variété au sein d’une famille",
+      "le nombre de magasins",
+      "la durée de stock",
+      "la zone chaude"
+    ],
+    "answer": 0,
+    "explanation": "La profondeur mesure le nombre de références au sein d’une même famille."
+  },
+  {
+    "id": "ADOC1-13",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.8",
+    "lesson": "8.1 Marque",
+    "difficulty": "intermédiaire",
+    "prompt": "La marque sert notamment à…",
+    "choices": [
+      "effacer la concurrence",
+      "identifier et différencier l’offre",
+      "supprimer la TVA",
+      "fixer le coût variable"
+    ],
+    "answer": 1,
+    "explanation": "La marque identifie, rassure et différencie l’offre."
+  },
+  {
+    "id": "ADOC1-14",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.9",
+    "lesson": "9.1 Merchandising",
+    "difficulty": "intermédiaire",
+    "prompt": "La « tête de gondole » est surtout utilisée pour…",
+    "choices": [
+      "stocker les archives",
+      "mettre en avant une offre",
+      "cacher les produits",
+      "réduire les ventes"
+    ],
+    "answer": 1,
+    "explanation": "La tête de gondole sert à mettre en avant une offre et créer du trafic."
+  },
+  {
+    "id": "ADOC1-15",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.9",
+    "lesson": "9.2 ILV / PLV",
+    "difficulty": "intermédiaire",
+    "prompt": "L’ILV sert principalement à…",
+    "choices": [
+      "informer le client",
+      "calculer la marge",
+      "payer les fournisseurs",
+      "mesurer la rotation"
+    ],
+    "answer": 0,
+    "explanation": "ILV = information sur le lieu de vente ; PLV = publicité / promotion."
+  },
+  {
+    "id": "ADOC1-16",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.10",
+    "lesson": "10.1 Espace commercial",
+    "difficulty": "intermédiaire",
+    "prompt": "Un espace commercial performant doit être…",
+    "choices": [
+      "uniquement beau",
+      "uniquement rentable",
+      "attractif, accessible, sûr et opérationnel",
+      "sans circulation client"
+    ],
+    "answer": 2,
+    "explanation": "La performance suppose un espace vendeur, lisible, sûr et exploitable."
+  },
+  {
+    "id": "ADOC1-17",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.11",
+    "lesson": "11.1 Promotion",
+    "difficulty": "intermédiaire",
+    "prompt": "Une promotion peut être dangereuse si…",
+    "choices": [
+      "le volume augmente",
+      "la marge baisse sans compensation par le volume",
+      "elle attire des clients",
+      "elle dure peu"
+    ],
+    "answer": 1,
+    "explanation": "Une promotion peut faire monter le CA mais dégrader le résultat si la marge perdue n’est pas compensée."
+  },
+  {
+    "id": "ADOC1-18",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.12",
+    "lesson": "12.1 Communication",
+    "difficulty": "intermédiaire",
+    "prompt": "Quel enchaînement est le plus logique pour construire une action de communication ?",
+    "choices": [
+      "Canal → objectif → cible → KPI",
+      "Objectif → cible → message → canal → KPI",
+      "KPI → canal → prix → marge",
+      "Cible → stock → TVA → oral"
+    ],
+    "answer": 1,
+    "explanation": "Une communication cohérente part de l’objectif puis de la cible, du message, du canal et des indicateurs."
+  },
+  {
+    "id": "ADOC1-19",
+    "year": "1A",
+    "subject": "ADOC",
+    "chapter": "Ch.13",
+    "lesson": "13.1 Projet ADOC",
+    "difficulty": "intermédiaire",
+    "prompt": "Dans une situation E6, la partie la plus attendue par le jury après les faits est…",
+    "choices": [
+      "une blague",
+      "une analyse avec résultats et recul",
+      "une photo seule",
+      "la couleur des slides"
+    ],
+    "answer": 1,
+    "explanation": "Le jury évalue la compétence démontrée, avec preuves, résultats, analyse et recul."
+  },
+  {
+    "id": "GO1-1",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.1",
+    "lesson": "1.1 Méthode",
+    "difficulty": "intermédiaire",
+    "prompt": "En GO, après un calcul, il faut presque toujours ajouter…",
+    "choices": [
+      "un dessin",
+      "une unité et une interprétation",
+      "un concurrent",
+      "une publicité"
+    ],
+    "answer": 1,
+    "explanation": "Une bonne réponse en GO = méthode + résultat + unité + interprétation."
+  },
+  {
+    "id": "GO1-2",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.2",
+    "lesson": "2.1 Facture",
+    "difficulty": "intermédiaire",
+    "prompt": "Montant HT = 1 000 € et TVA = 20 %. Quel est le TTC ?",
+    "choices": [
+      "1 020 €",
+      "1 200 €",
+      "800 €",
+      "1 500 €"
+    ],
+    "answer": 1,
+    "explanation": "TVA = 200 € ; TTC = 1 000 + 200 = 1 200 €."
+  },
+  {
+    "id": "GO1-3",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.2",
+    "lesson": "2.2 TVA",
+    "difficulty": "intermédiaire",
+    "prompt": "La TVA se calcule à partir…",
+    "choices": [
+      "du TTC",
+      "du coût fixe",
+      "du montant HT",
+      "du bénéfice"
+    ],
+    "answer": 2,
+    "explanation": "La TVA est calculée sur la base HT."
+  },
+  {
+    "id": "GO1-4",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.3",
+    "lesson": "3.1 BFR",
+    "difficulty": "intermédiaire",
+    "prompt": "Le BFR augmente surtout quand…",
+    "choices": [
+      "les stocks et créances augmentent",
+      "les charges fixes baissent",
+      "les clients paient comptant",
+      "les stocks diminuent"
+    ],
+    "answer": 0,
+    "explanation": "Plus les stocks et créances immobilisent d’argent, plus le besoin augmente."
+  },
+  {
+    "id": "GO1-5",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.4",
+    "lesson": "4.1 Trésorerie",
+    "difficulty": "intermédiaire",
+    "prompt": "Le chiffre d’affaires est toujours égal à la trésorerie disponible.",
+    "choices": [
+      "Vrai",
+      "Faux"
+    ],
+    "answer": 1,
+    "explanation": "Faux : une vente peut ne pas être encore encaissée."
+  },
+  {
+    "id": "GO1-6",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.5",
+    "lesson": "5.1 Stock",
+    "difficulty": "intermédiaire",
+    "prompt": "La rotation des stocks mesure…",
+    "choices": [
+      "la vitesse de renouvellement du stock",
+      "la taille du magasin",
+      "la TVA",
+      "la masse salariale"
+    ],
+    "answer": 0,
+    "explanation": "La rotation indique combien de fois le stock se renouvelle sur une période."
+  },
+  {
+    "id": "GO1-7",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.6",
+    "lesson": "6.1 Inventaire",
+    "difficulty": "intermédiaire",
+    "prompt": "L’inventaire sert notamment à comparer…",
+    "choices": [
+      "stock théorique et stock réel",
+      "TVA et BFR",
+      "marge et communication",
+      "persona et cible"
+    ],
+    "answer": 0,
+    "explanation": "Il permet de repérer les écarts entre le stock théorique et le stock réel."
+  },
+  {
+    "id": "GO1-8",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.7",
+    "lesson": "7.1 Marge",
+    "difficulty": "intermédiaire",
+    "prompt": "Si un produit est acheté 80 € HT et vendu 120 € HT, la marge commerciale est…",
+    "choices": [
+      "20 €",
+      "40 €",
+      "50 €",
+      "66,67 €"
+    ],
+    "answer": 1,
+    "explanation": "Marge commerciale = PV HT - coût d’achat HT = 120 - 80 = 40 €."
+  },
+  {
+    "id": "GO1-9",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.8",
+    "lesson": "8.1 Seuil",
+    "difficulty": "intermédiaire",
+    "prompt": "Le seuil de rentabilité correspond au moment où…",
+    "choices": [
+      "les ventes dépassent les achats",
+      "le chiffre d’affaires couvre toutes les charges",
+      "la TVA devient nulle",
+      "le stock est vide"
+    ],
+    "answer": 1,
+    "explanation": "Le seuil correspond au niveau d’activité où le résultat devient nul."
+  },
+  {
+    "id": "GO1-10",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.9",
+    "lesson": "9.1 Compte de résultat",
+    "difficulty": "intermédiaire",
+    "prompt": "Le compte de résultat présente…",
+    "choices": [
+      "le patrimoine à une date donnée",
+      "la performance sur une période",
+      "le plan du magasin",
+      "le parcours client"
+    ],
+    "answer": 1,
+    "explanation": "Il retrace produits, charges et résultat sur une période."
+  },
+  {
+    "id": "GO1-11",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.10",
+    "lesson": "10.1 Bilan",
+    "difficulty": "intermédiaire",
+    "prompt": "Le bilan présente…",
+    "choices": [
+      "ce qui s’est passé pendant l’année",
+      "les emplois et ressources à une date donnée",
+      "la campagne de communication",
+      "les segments de marché"
+    ],
+    "answer": 1,
+    "explanation": "Le bilan photographie la situation patrimoniale à une date donnée."
+  },
+  {
+    "id": "GO1-12",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.10",
+    "lesson": "10.2 Trésorerie nette",
+    "difficulty": "intermédiaire",
+    "prompt": "Si FRNG = 80 k€ et BFR = 110 k€, la trésorerie nette est…",
+    "choices": [
+      "30 k€",
+      "-30 k€",
+      "190 k€",
+      "-190 k€"
+    ],
+    "answer": 1,
+    "explanation": "Trésorerie nette = FRNG - BFR = 80 - 110 = -30 k€."
+  },
+  {
+    "id": "GO1-13",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.11",
+    "lesson": "11.1 Risques",
+    "difficulty": "intermédiaire",
+    "prompt": "La meilleure logique de gestion d’un risque est…",
+    "choices": [
+      "ignorer → réparer",
+      "identifier → prévenir → protéger → traiter",
+      "calculer → vendre",
+      "acheter → ranger"
+    ],
+    "answer": 1,
+    "explanation": "On commence par identifier puis prévenir/protéger et traiter si nécessaire."
+  },
+  {
+    "id": "GO1-14",
+    "year": "1A",
+    "subject": "GO",
+    "chapter": "Ch.12",
+    "lesson": "12.1 Tableau de bord",
+    "difficulty": "intermédiaire",
+    "prompt": "Un bon tableau de bord contient…",
+    "choices": [
+      "le plus d’indicateurs possible",
+      "peu d’indicateurs mais pertinents",
+      "uniquement des photos",
+      "des phrases longues"
+    ],
+    "answer": 1,
+    "explanation": "Mieux vaut peu de KPI mais réellement utiles à la décision."
+  },
+  {
+    "id": "ADOC2-1",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.1",
+    "lesson": "1.1 E6",
+    "difficulty": "examen",
+    "prompt": "À l’oral E6, le plus important est de…",
+    "choices": [
+      "raconter sa journée",
+      "démontrer une compétence avec preuves et analyse",
+      "faire rire le jury uniquement",
+      "lire ses notes"
+    ],
+    "answer": 1,
+    "explanation": "Le jury attend une compétence démontrée avec contexte, preuves, résultats et recul."
+  },
+  {
+    "id": "ADOC2-2",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.2",
+    "lesson": "2.1 Adaptation locale",
+    "difficulty": "examen",
+    "prompt": "Adapter localement une action commerciale signifie…",
+    "choices": [
+      "oublier l’enseigne",
+      "personnaliser sans casser le positionnement de l’enseigne",
+      "supprimer les règles",
+      "ne plus mesurer"
+    ],
+    "answer": 1,
+    "explanation": "L’adaptation locale doit rester cohérente avec la politique d’enseigne."
+  },
+  {
+    "id": "ADOC2-3",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.3",
+    "lesson": "3.1 Fournisseurs",
+    "difficulty": "examen",
+    "prompt": "Dans une relation fournisseur, le contrat sert notamment à…",
+    "choices": [
+      "éviter toute négociation",
+      "formaliser les engagements",
+      "réduire la TVA",
+      "segmenter les clients"
+    ],
+    "answer": 1,
+    "explanation": "Le contrat sécurise les engagements, délais, prix, qualité, responsabilités."
+  },
+  {
+    "id": "ADOC2-4",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.4",
+    "lesson": "4.1 E-merchandising",
+    "difficulty": "examen",
+    "prompt": "En e-merchandising, les filtres et catégories servent surtout à…",
+    "choices": [
+      "décorer la page",
+      "aider le client à trouver vite le bon produit",
+      "augmenter les charges fixes",
+      "calculer le FRNG"
+    ],
+    "answer": 1,
+    "explanation": "Ils facilitent la navigation et la conversion."
+  },
+  {
+    "id": "ADOC2-5",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.5",
+    "lesson": "5.1 Performance d’implantation",
+    "difficulty": "examen",
+    "prompt": "Pour évaluer une nouvelle implantation, on compare idéalement…",
+    "choices": [
+      "avant / après avec indicateurs",
+      "uniquement la couleur",
+      "uniquement le ressenti",
+      "la météo"
+    ],
+    "answer": 0,
+    "explanation": "Une implantation se mesure avec des indicateurs comparables avant/après."
+  },
+  {
+    "id": "ADOC2-6",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.6",
+    "lesson": "6.1 Animation omnicanale",
+    "difficulty": "examen",
+    "prompt": "Une animation omnicanale réussie suppose…",
+    "choices": [
+      "un message différent partout",
+      "une histoire cohérente sur plusieurs canaux",
+      "un seul canal",
+      "aucun suivi"
+    ],
+    "answer": 1,
+    "explanation": "La cohérence de la promesse doit rester forte sur tous les points de contact."
+  },
+  {
+    "id": "ADOC2-7",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.7",
+    "lesson": "7.1 Rentabilité promo",
+    "difficulty": "examen",
+    "prompt": "Avant de reconduire une promotion, il faut vérifier…",
+    "choices": [
+      "seulement le trafic",
+      "l’effet sur la marge et le résultat",
+      "seulement la déco",
+      "la couleur des emballages"
+    ],
+    "answer": 1,
+    "explanation": "Le trafic seul ne suffit pas : il faut juger l’effet sur la rentabilité."
+  },
+  {
+    "id": "ADOC2-8",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.8",
+    "lesson": "8.1 Communication locale",
+    "difficulty": "examen",
+    "prompt": "Un bon KPI pour une campagne locale peut être…",
+    "choices": [
+      "le chiffre préféré du manager",
+      "le trafic, le taux de clic, la conversion ou la marge selon l’objectif",
+      "la météo",
+      "le nombre de stylos"
+    ],
+    "answer": 1,
+    "explanation": "Le KPI dépend de l’objectif visé."
+  },
+  {
+    "id": "ADOC2-9",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.9",
+    "lesson": "9.1 Réputation digitale",
+    "difficulty": "examen",
+    "prompt": "Les avis clients en ligne influencent surtout…",
+    "choices": [
+      "la TVA",
+      "la confiance et le trafic",
+      "le BFR directement",
+      "le seuil de rentabilité uniquement"
+    ],
+    "answer": 1,
+    "explanation": "Les avis rassurent, influencent le choix et donc le trafic / la conversion."
+  },
+  {
+    "id": "ADOC2-10",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.10",
+    "lesson": "10.1 Projet",
+    "difficulty": "examen",
+    "prompt": "Un bon pilotage de projet suppose…",
+    "choices": [
+      "objectif, planning, budget, risques, preuves",
+      "improvisation totale",
+      "zéro mesure",
+      "aucun jalon"
+    ],
+    "answer": 0,
+    "explanation": "Un projet se pilote avec objectifs, planning, budget, risques, preuves et ajustements."
+  },
+  {
+    "id": "ADOC2-11",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.11",
+    "lesson": "11.1 Évaluation",
+    "difficulty": "examen",
+    "prompt": "Évaluer une action commerciale consiste à…",
+    "choices": [
+      "dire “ça a marché”",
+      "mesurer les résultats, les écarts et les causes",
+      "faire une capture d’écran seulement",
+      "relancer une promotion"
+    ],
+    "answer": 1,
+    "explanation": "L’évaluation implique mesure, analyse des écarts et décisions."
+  },
+  {
+    "id": "ADOC2-12",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.12",
+    "lesson": "12.1 Oral E6",
+    "difficulty": "examen",
+    "prompt": "À l’oral, le support numérique doit surtout…",
+    "choices": [
+      "remplacer le discours",
+      "accompagner une démonstration claire",
+      "montrer beaucoup d’animations",
+      "être plein de texte lu mot à mot"
+    ],
+    "answer": 1,
+    "explanation": "Le support aide la démonstration mais ne remplace pas l’analyse orale."
+  },
+  {
+    "id": "ADOC2-13",
+    "year": "2A",
+    "subject": "ADOC",
+    "chapter": "Ch.13",
+    "lesson": "13.1 Cas complet",
+    "difficulty": "examen",
+    "prompt": "La meilleure structure de situation E6 est…",
+    "choices": [
+      "Contexte → objectif → action → résultats → analyse → recommandation",
+      "Photo → merci",
+      "Définition → TVA → bilan",
+      "Aucune structure"
+    ],
+    "answer": 0,
+    "explanation": "Cette structure aide à démontrer réellement la compétence."
+  },
+  {
+    "id": "GO2-1",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.1",
+    "lesson": "1.1 Stratégie E7",
+    "difficulty": "examen",
+    "prompt": "En E7, une bonne copie montre…",
+    "choices": [
+      "seulement le résultat final",
+      "la méthode, le calcul, l’unité et l’interprétation",
+      "des dessins",
+      "aucun raisonnement"
+    ],
+    "answer": 1,
+    "explanation": "La méthode visible et l’interprétation rapportent des points."
+  },
+  {
+    "id": "GO2-2",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.2",
+    "lesson": "2.1 Stocks avancés",
+    "difficulty": "examen",
+    "prompt": "Commander trop souvent réduit généralement…",
+    "choices": [
+      "le coût de commande",
+      "le stock moyen",
+      "la rotation",
+      "les ventes"
+    ],
+    "answer": 1,
+    "explanation": "Des commandes plus fréquentes réduisent souvent le stock moyen, mais augmentent le coût de commande."
+  },
+  {
+    "id": "GO2-3",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.3",
+    "lesson": "3.1 Financement du BFR",
+    "difficulty": "examen",
+    "prompt": "Le premier levier pour mieux financer le BFR est souvent…",
+    "choices": [
+      "augmenter les affiches",
+      "réduire le BFR lui-même",
+      "refaire le logo",
+      "supprimer les clients"
+    ],
+    "answer": 1,
+    "explanation": "Agir sur stocks, délais clients ou délais fournisseurs est souvent le premier levier."
+  },
+  {
+    "id": "GO2-4",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.4",
+    "lesson": "4.1 SIG",
+    "difficulty": "examen",
+    "prompt": "Les SIG servent à…",
+    "choices": [
+      "décomposer la formation du résultat",
+      "décorer la copie",
+      "calculer la segmentation",
+      "dessiner un rayon"
+    ],
+    "answer": 0,
+    "explanation": "Ils montrent où la performance se crée et se détruit."
+  },
+  {
+    "id": "GO2-5",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.5",
+    "lesson": "5.1 Bilan fonctionnel",
+    "difficulty": "examen",
+    "prompt": "Le bilan fonctionnel sert surtout à…",
+    "choices": [
+      "faire de la publicité",
+      "analyser l’équilibre financier",
+      "compter les clients",
+      "choisir une couleur"
+    ],
+    "answer": 1,
+    "explanation": "Il permet une lecture financière orientée équilibre emplois/ressources."
+  },
+  {
+    "id": "GO2-6",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.6",
+    "lesson": "6.1 Prix",
+    "difficulty": "examen",
+    "prompt": "Fixer un prix suppose de tenir compte…",
+    "choices": [
+      "du seul coût",
+      "du coût, de la demande, de la concurrence et du positionnement",
+      "de la météo seulement",
+      "du seul stock"
+    ],
+    "answer": 1,
+    "explanation": "Le prix résulte de plusieurs contraintes et objectifs."
+  },
+  {
+    "id": "GO2-7",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.7",
+    "lesson": "7.1 Prévisions",
+    "difficulty": "examen",
+    "prompt": "Une prévision de ventes est…",
+    "choices": [
+      "une certitude",
+      "une estimation argumentée",
+      "un résultat déjà réalisé",
+      "une facture"
+    ],
+    "answer": 1,
+    "explanation": "Une prévision est une hypothèse chiffrée, pas une certitude."
+  },
+  {
+    "id": "GO2-8",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.8",
+    "lesson": "8.1 Budgets",
+    "difficulty": "examen",
+    "prompt": "Un écart budgétaire utile doit conduire à…",
+    "choices": [
+      "aucune réaction",
+      "une recherche de causes et une action corrective",
+      "plus de texte",
+      "une nouvelle couleur"
+    ],
+    "answer": 1,
+    "explanation": "L’intérêt du budget est le pilotage des écarts."
+  },
+  {
+    "id": "GO2-9",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.9",
+    "lesson": "9.1 Budget de trésorerie",
+    "difficulty": "examen",
+    "prompt": "Le budget de trésorerie sert à…",
+    "choices": [
+      "mesurer uniquement le CA",
+      "anticiper les entrées et sorties d’argent",
+      "segmenter les clients",
+      "faire un benchmark"
+    ],
+    "answer": 1,
+    "explanation": "Il anticipe les flux de trésorerie mois par mois."
+  },
+  {
+    "id": "GO2-10",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.10",
+    "lesson": "10.1 Financement d’investissement",
+    "difficulty": "examen",
+    "prompt": "Un financement par emprunt a souvent pour avantage de…",
+    "choices": [
+      "supprimer tous les coûts",
+      "préserver la trésorerie immédiate",
+      "annuler les intérêts",
+      "rendre la VAN inutile"
+    ],
+    "answer": 1,
+    "explanation": "L’emprunt préserve la trésorerie à court terme mais génère un coût financier."
+  },
+  {
+    "id": "GO2-11",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.11",
+    "lesson": "11.1 VAN",
+    "difficulty": "examen",
+    "prompt": "Si la VAN est positive, cela signifie en général que…",
+    "choices": [
+      "le projet détruit de la valeur",
+      "le projet crée de la valeur au taux retenu",
+      "la TVA baisse",
+      "les stocks montent"
+    ],
+    "answer": 1,
+    "explanation": "Une VAN positive indique un projet créateur de valeur selon le taux choisi."
+  },
+  {
+    "id": "GO2-12",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.12",
+    "lesson": "12.1 Risques",
+    "difficulty": "examen",
+    "prompt": "Une assurance…",
+    "choices": [
+      "remplace la prévention",
+      "complète la prévention mais ne la remplace pas",
+      "supprime tous les incidents",
+      "évite tout contrôle"
+    ],
+    "answer": 1,
+    "explanation": "La prévention reste essentielle ; l’assurance ne fait que couvrir certains risques."
+  },
+  {
+    "id": "GO2-13",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.13",
+    "lesson": "13.1 SIC",
+    "difficulty": "examen",
+    "prompt": "Le SIC transforme principalement…",
+    "choices": [
+      "des clients en fournisseurs",
+      "des données en informations utiles à la décision",
+      "des marges en promotions",
+      "des rayons en vitrines"
+    ],
+    "answer": 1,
+    "explanation": "Le système d’information commercial soutient le pilotage en transformant les données en informations."
+  },
+  {
+    "id": "GO2-14",
+    "year": "2A",
+    "subject": "GO",
+    "chapter": "Ch.14",
+    "lesson": "14.1 Bootcamp E7",
+    "difficulty": "examen",
+    "prompt": "Le meilleur réflexe en fin d’épreuve E7 est de…",
+    "choices": [
+      "quitter la salle vite",
+      "relire pour vérifier unités, cohérence et interprétation",
+      "ajouter des couleurs",
+      "réécrire le sujet"
+    ],
+    "answer": 1,
+    "explanation": "La relecture sécurise des points faciles : unités, cohérence, oublis d’interprétation."
+  }
+]
