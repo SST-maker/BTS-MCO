@@ -1,0 +1,34 @@
+export const $ = (s,root=document) => root.querySelector(s);
+export const $$ = (s,root=document) => [...root.querySelectorAll(s)];
+export const esc = (v='') => String(v).replace(/[&<>'"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[c]));
+export const qs = (k) => new URLSearchParams(location.search).get(k);
+export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+export function teacherKey(){
+  let k=localStorage.getItem('mco_teacher_key');
+  if(!k){ k=crypto.randomUUID(); localStorage.setItem('mco_teacher_key',k); }
+  return k;
+}
+export function playerStore(code,data){ localStorage.setItem(`mco_player_${code}`,JSON.stringify(data)); }
+export function playerLoad(code){ try{return JSON.parse(localStorage.getItem(`mco_player_${code}`)||'null')}catch{return null} }
+export function toast(msg,type='ok'){
+  const n=document.createElement('div');n.className=`toast ${type}`;n.textContent=msg;document.body.appendChild(n);requestAnimationFrame(()=>n.classList.add('show'));setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),250)},2600);
+}
+export function fmtDate(v){ try{return new Intl.DateTimeFormat('fr-FR',{dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch{return ''} }
+export function modeLabel(m){return({class:'Mode classe',battle:'Battle',revision:'Révision',bts:'Mode BTS',duel:'Duel'}[m]||m||'Classe')}
+export async function loadCurriculum(){return fetch('./data/curriculum.json').then(r=>r.json())}
+export async function loadQuestions(){return fetch('./data/questions.json').then(r=>r.json())}
+export function appShell(active='home'){
+  return `<aside class="sidebar">
+    <a class="brand-mini" href="./index.html"><img src="./assets/icons/icon-96.png"><span><b>MCO</b><small>QUIZ ARENA</small></span></a>
+    <nav>
+      <a class="${active==='dashboard'?'active':''}" href="./teacher.html">⌂ <span>Dashboard</span></a>
+      <a class="${active==='bank'?'active':''}" href="./bank.html">▣ <span>Banque de questions</span></a>
+      <a class="${active==='solo'?'active':''}" href="./solo.html">◎ <span>Révision solo</span></a>
+      <a href="./join.html">⚡ <span>Rejoindre</span></a>
+    </nav>
+    <div class="side-foot"><img src="./assets/icons/icon-64.png"><span>NCR SOLUTIONS<br><b>BTS MCO</b></span></div>
+  </aside>`;
+}
+export function configWarning(){
+  return `<div class="config-warning"><b>Configuration Supabase requise</b><br>Ouvre <code>docs/config.js</code> et renseigne ton URL Supabase + ta clé publishable. La clé <b>service_role</b> ne doit jamais être utilisée ici.</div>`;
+}
