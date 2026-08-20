@@ -1,1 +1,0 @@
-self.addEventListener('install',e=>{e.waitUntil(caches.open('mco-quiz-v1').then(c=>c.addAll(['./','./index.html','./styles.css','./app.js','./manifest.json','./assets/icon.svg','./data/questions.json'])))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})
