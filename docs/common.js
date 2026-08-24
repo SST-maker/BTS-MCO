@@ -18,6 +18,7 @@ export function appShell(active='home',profile=null){
     <nav>
       <a class="${active==='dashboard'?'active':''}" href="./teacher.html"><span class="nav-icon">⌂</span><span>Dashboard</span></a>
       <a class="${active==='students'?'active':''}" href="./students.html"><span class="nav-icon">♙</span><span>Élèves & accès</span></a>
+      <a class="${active==='progression'?'active':''}" href="./progression.html"><span class="nav-icon">◫</span><span>Progression classes</span></a>
       <a class="${active==='bank'?'active':''}" href="./bank.html"><span class="nav-icon">▣</span><span>Banque de questions</span></a>
       <a href="./join.html"><span class="nav-icon">⚡</span><span>Rejoindre un live</span></a>
     </nav>
