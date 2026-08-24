@@ -1,3 +1,4 @@
+import { avatarMarkup } from './avatar.js';
 export const $ = (s,root=document) => root.querySelector(s);
 export const $$ = (s,root=document) => [...root.querySelectorAll(s)];
 export const esc = (v='') => String(v).replace(/[&<>'"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[c]));
@@ -27,6 +28,6 @@ export function appShell(active='home',profile=null){
   </aside>`;
 }
 export function studentTopbar(student,active='home'){
-  return `<header class="student-topbar"><a class="student-brand" href="./student.html"><img src="./assets/icons/icon-64.png"><span><b>MCO Quiz Arena</b><small>NCR Solutions • BTS MCO</small></span></a><nav><a class="${active==='home'?'active':''}" href="./student.html">Mon espace</a><a class="${active==='live'?'active':''}" href="./join.html">Live</a><button id="studentLogout" type="button">Déconnexion</button></nav><div class="student-mini"><span>${esc(student?.displayName||'Élève')}</span><small>${esc(student?.className||'BTS MCO')}</small></div></header>`;
+  return `<header class="student-topbar"><a class="student-brand" href="./student.html"><img src="./assets/icons/icon-64.png"><span><b>MCO Quiz Arena</b><small>NCR Solutions • BTS MCO</small></span></a><nav><a class="${active==='home'?'active':''}" href="./student.html">Mon espace</a><a class="${active==='live'?'active':''}" href="./join.html">Live</a><a class="${active==='profile'?'active':''}" href="./student-profile.html">Mon avatar</a><button id="studentLogout" type="button">Déconnexion</button></nav><a class="student-mini student-profile-chip" href="./student-profile.html" aria-label="Personnaliser mon avatar"><span class="student-mini-avatar">${avatarMarkup(student?.avatar||{},'avatar-svg avatar-topbar-svg',`Avatar de ${student?.displayName||'élève'}`)}</span><span class="student-mini-copy"><span>${esc(student?.displayName||'Élève')}</span><small>${esc(student?.className||'BTS MCO')}</small></span></a></header>`;
 }
 export function configWarning(){ return `<div class="config-warning"><b>Configuration Supabase requise</b><br>Ouvre <code>docs/config.js</code> et renseigne ton URL Supabase + ta clé publishable. La clé <b>service_role</b> ne doit jamais être utilisée ici.</div>`; }
