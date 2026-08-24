@@ -9,6 +9,17 @@ const riskLabel=n=>n>=3?'À accompagner':n===2?'À surveiller':'OK';
 const riskClass=n=>n>=3?'danger':n===2?'warn':'good';
 function pageHead(title,sub,actions=''){return `<div class="dashboard-head"><div><div class="eyebrow">INTELLIGENCE PÉDAGOGIQUE</div><h1>${title}</h1><p>${sub}</p></div><div class="actions">${actions}</div></div>`}
 function scoreTone(v){v=Number(v)||0;return v>=80?'good':v>=60?'warn':'danger'}
+function activityText(v){
+  if(!v)return 'jamais';
+  const d=new Date(v),ts=d.getTime();
+  if(!Number.isFinite(ts))return 'inconnue';
+  const seconds=Math.max(0,Math.floor((Date.now()-ts)/1000));
+  if(seconds<60)return 'à l’instant';
+  if(seconds<3600){const m=Math.floor(seconds/60);return `il y a ${m} min`;}
+  if(seconds<86400){const h=Math.floor(seconds/3600);return `il y a ${h} h`;}
+  if(seconds<7*86400){const days=Math.floor(seconds/86400);return days===1?'hier':`il y a ${days} j`;}
+  return fmtDate(v)||'inconnue';
+}
 function recommendationCards(){
   const weak=(data.weakLessons||[])[0];const atRisk=(data.students||[]).filter(s=>s.riskRank>=2);const inactive=(data.students||[]).filter(s=>s.lastActivity&&Date.now()-new Date(s.lastActivity).getTime()>14*864e5);
   const cards=[];
@@ -43,6 +54,21 @@ function wire(){
   $('#matrixYear').onchange=e=>{matrixYear=e.target.value;$('#matrixRoot').innerHTML=matrix()};
   $('#matrixSubject').onchange=e=>{matrixSubject=e.target.value;$('#matrixRoot').innerHTML=matrix()};
 }
-async function load(){try{root.innerHTML='<div class="card panel"><div class="loading-premium"><span></span><b>Analyse pédagogique en cours…</b></div></div>';data=await rpc('mco_teacher_pedagogical_dashboard',{p_class_name:classFilter,p_days:30});render()}catch(e){root.innerHTML=`${pageHead('Migration V5.8 requise','Le tableau de bord intelligent dépend des nouvelles fonctions Supabase.')}<div class="card panel"><div class="notice">${esc(e.message)}</div><p class="muted">Exécute <code>018_intelligence_pedagogique_et_fiches.sql</code> dans Supabase.</p></div>`}}
+async function load(){
+  root.innerHTML='<div class="card panel"><div class="loading-premium"><span></span><b>Analyse pédagogique en cours…</b></div></div>';
+  try{
+    data=await rpc('mco_teacher_pedagogical_dashboard',{p_class_name:classFilter,p_days:30});
+  }catch(e){
+    root.innerHTML=`${pageHead('Migration V5.8 requise','Le tableau de bord intelligent dépend des nouvelles fonctions Supabase.')}<div class="card panel"><div class="notice">${esc(e.message)}</div><p class="muted">Exécute <code>018_intelligence_pedagogique_et_fiches.sql</code> dans Supabase.</p></div>`;
+    return;
+  }
+  try{
+    render();
+  }catch(e){
+    console.error('Erreur de rendu du pilotage pédagogique',e);
+    root.innerHTML=`${pageHead('Pilotage pédagogique','Les données Supabase ont bien été chargées, mais l’interface a rencontré une erreur d’affichage.')}<div class="card panel"><div class="notice">${esc(e.message)}</div><p class="muted">Aucune migration SQL supplémentaire n’est nécessaire pour cette erreur.</p><button class="btn primary" id="retryRender">Réessayer</button></div>`;
+    const retry=$('#retryRender');if(retry)retry.onclick=()=>{try{render()}catch(err){toast(err.message||'Erreur d’affichage','bad')}};
+  }
+}
 async function boot(){profile=await requireTeacher();if(!profile)return;$('#sidebar').innerHTML=appShell('pedagogy',profile);$('#logoutBtn').onclick=async()=>{await signOutTeacher();location.href='./login.html'};await load()}
 boot();
