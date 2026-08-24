@@ -17,15 +17,19 @@ export function fmtDate(v){ try{return new Intl.DateTimeFormat('fr-FR',{dateStyl
 export function modeLabel(m){return({class:'Mode classe',battle:'Battle',revision:'Révision',bts:'Mode BTS',duel:'Duel'}[m]||m||'Classe')}
 export async function loadCurriculum(){return fetch('./data/curriculum.json').then(r=>r.json())}
 export async function loadQuestions(){return fetch('./data/questions.json').then(r=>r.json())}
-export function appShell(active='home'){
-  return `<aside class="sidebar">
+export function appShell(active='home',profile=null){
+  const name=profile?.displayName||profile?.email||'Professeur';
+  const initial=String(name).trim().charAt(0).toUpperCase()||'P';
+  return `<aside class="sidebar premium-sidebar">
     <a class="brand-mini" href="./index.html"><img src="./assets/icons/icon-96.png"><span><b>MCO</b><small>QUIZ ARENA</small></span></a>
+    <div class="side-section-label">ESPACE PROFESSEUR</div>
     <nav>
-      <a class="${active==='dashboard'?'active':''}" href="./teacher.html">⌂ <span>Dashboard</span></a>
-      <a class="${active==='bank'?'active':''}" href="./bank.html">▣ <span>Banque de questions</span></a>
-      <a class="${active==='solo'?'active':''}" href="./solo.html">◎ <span>Révision solo</span></a>
-      <a href="./join.html">⚡ <span>Rejoindre</span></a>
+      <a class="${active==='dashboard'?'active':''}" href="./teacher.html"><span class="nav-icon">⌂</span><span>Dashboard</span></a>
+      <a class="${active==='bank'?'active':''}" href="./bank.html"><span class="nav-icon">▣</span><span>Banque de questions</span></a>
+      <a class="${active==='solo'?'active':''}" href="./solo.html"><span class="nav-icon">◎</span><span>Révision solo</span></a>
+      <a href="./join.html"><span class="nav-icon">⚡</span><span>Rejoindre</span></a>
     </nav>
+    <div class="teacher-card"><div class="teacher-avatar">${esc(initial)}</div><div><b>${esc(name)}</b><small>${esc(profile?.role||'teacher')}</small></div><button id="logoutBtn" class="logout-mini" title="Se déconnecter">↗</button></div>
     <div class="side-foot"><img src="./assets/icons/icon-64.png"><span>NCR SOLUTIONS<br><b>BTS MCO</b></span></div>
   </aside>`;
 }
