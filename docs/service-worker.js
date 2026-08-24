@@ -1,4 +1,4 @@
-const CACHE='mco-quiz-v6-modern-ux';
+const CACHE='mco-quiz-v7-ultimate-ux';
 const ASSETS=['./','./index.html','./teacher.html','./students.html','./progression.html','./pedagogy.html','./pedagogy.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js','./login.html','./reset.html','./student-login.html','./student.html','./student.js','./student-profile.html','./student-profile.js','./avatar.js','./lesson.html','./lesson.js','./student-practice.html','./student-practice.js','./join.html','./play.html','./projection.html','./solo.html','./bank.html','./styles.css','./common.js','./progression.js','./supabase-client.js','./manifest.webmanifest','./data/curriculum.json','./assets/icons/icon-192.png','./assets/icons/icon-512.png','./assets/icons/favicon-64.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

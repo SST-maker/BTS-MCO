@@ -29,23 +29,13 @@ function groupHtml(key){
 
 function render(){
   avatar=normalizeAvatar(student.avatar||{});
-  root.innerHTML=`<div class="student-shell">${studentTopbar({...student,avatar},'profile')}
-    <main class="student-main profile-main avatar-studio-plus">
-      <section class="profile-hero-card avatar-plus-hero">
-        <div class="profile-preview-wrap">
-          <div id="avatarPreview" class="profile-avatar-preview avatar-preview-premium">${avatarMarkup(avatar,'avatar-svg profile-avatar-svg',`Avatar de ${student.displayName}`)}</div>
-          <div class="profile-preview-meta"><div class="eyebrow">MON AVATAR</div><h1>${esc(student.displayName)}</h1><p>${esc(student.className||'BTS MCO')}</p><small id="avatarSummary">${esc(avatarSummary(avatar))}</small></div>
-        </div>
-        <div class="profile-hero-copy"><div class="eyebrow light">AVATAR STUDIO+</div><h2>Ton robot.<br><span>Ton style.</span></h2><p>Personnalise ta coiffure, tes lunettes, ton chapeau et chaque détail de ton profil. Ton avatar te suit dans les lives, les classements et le podium.</p><div class="avatar-combo-pill">✨ Plus de 12 millions de combinaisons</div><button class="btn glass" id="randomAvatar" type="button">🎲 Surprends-moi</button></div>
-      </section>
-
-      <section class="avatar-studio avatar-studio-v56">
-        <div class="avatar-studio-head"><div><div class="eyebrow">STUDIO AVATAR+</div><h2>Crée un avatar vraiment unique</h2><p>Les éléments sont construits en SVG : ils restent nets sur mobile, Retina et vidéoprojecteur.</p></div><div class="avatar-save-wrap"><span id="saveStatus">Toutes les modifications sont enregistrées.</span><button class="btn primary" id="saveAvatar" disabled>Enregistrer mon avatar</button></div></div>
-        ${['background','accent','face','hair','hairColor','glasses','hat','accessory','frame'].map(groupHtml).join('')}
-        <div class="avatar-compat-note"><b>💡 Astuce</b><span>Un chapeau peut remplacer certains accessoires de tête pour garder un rendu propre. L’éclair reste automatiquement adapté.</span></div>
-        <div class="avatar-studio-footer"><a class="btn soft" href="./student.html">← Retour à mon espace</a><button class="btn primary" id="saveAvatarBottom" disabled>Enregistrer</button></div>
-      </section>
-    </main></div>`;
+  root.innerHTML=`<div class="student-shell">${studentTopbar({...student,avatar},'profile')}<main class="student-main avatar-studio-page">
+    <div class="avatar-page-head"><div><span class="section-kicker">AVATAR STUDIO+</span><h1>Crée ton identité dans l’Arena.</h1><p>Choisis chaque détail de ton robot. Ton avatar te suit dans les lives, les classements et le podium.</p></div><a class="btn soft" href="./student.html">← Retour à mon espace</a></div>
+    <section class="avatar-workbench">
+      <aside class="avatar-preview-column"><div class="avatar-preview-card"><div class="avatar-preview-orbit"></div><div id="avatarPreview" class="profile-avatar-preview avatar-preview-premium">${avatarMarkup(avatar,'avatar-svg profile-avatar-svg',`Avatar de ${student.displayName}`)}</div><div class="profile-preview-meta"><span class="section-kicker">APERÇU</span><h2>${esc(student.displayName)}</h2><p>${esc(student.className||'BTS MCO')}</p><small id="avatarSummary">${esc(avatarSummary(avatar))}</small></div><div class="avatar-preview-actions"><button class="btn soft" id="randomAvatar" type="button">🎲 Surprends-moi</button><button class="btn primary" id="saveAvatar" disabled>Enregistrer</button></div><div class="avatar-save-state"><span class="save-dot"></span><span id="saveStatus">Toutes les modifications sont enregistrées.</span></div></div><div class="avatar-tip-card"><b>Ton profil, pas une photo.</b><p>Tout est généré en SVG : ton avatar reste net sur mobile, ordinateur et vidéoprojecteur.</p></div></aside>
+      <div class="avatar-controls-column"><div class="avatar-controls-head"><div><span class="section-kicker">PERSONNALISATION</span><h2>Assemble ton style.</h2></div><span class="avatar-combo-pill">+12 M de combinaisons</span></div>${['background','accent','face','hair','hairColor','glasses','hat','accessory','frame'].map(groupHtml).join('')}<div class="avatar-compat-note"><b>Astuce</b><span>Certains chapeaux remplacent automatiquement les accessoires de tête pour garder un rendu propre.</span></div><div class="avatar-studio-footer"><span>Ton avatar apparaît dans ton compte, les lives et les podiums.</span><button class="btn primary" id="saveAvatarBottom" disabled>Enregistrer les modifications</button></div></div>
+    </section>
+  </main></div>`;
   paintSwatches();syncSelection();wire();
 }
 
