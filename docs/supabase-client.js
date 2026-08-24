@@ -32,9 +32,7 @@ export async function signInTeacher(email,password){
   if(error) throw new Error(error.message||'Connexion impossible');
   return data.session;
 }
-export async function signOutTeacher(){
-  if(supabase) await supabase.auth.signOut();
-}
+export async function signOutTeacher(){ if(supabase) await supabase.auth.signOut(); }
 export async function requestPasswordReset(email){
   if(!supabase) throw new Error('Supabase n’est pas configuré.');
   const redirectTo=new URL('./reset.html',location.href).href;
@@ -60,6 +58,36 @@ export async function requireTeacher(){
     const msg=encodeURIComponent('Ce compte n’a pas d’accès professeur MCO Quiz Arena.');
     location.href=`./login.html?error=${msg}`; return null;
   }
+}
+
+// Portail élève : authentification par identifiant + mot de passe, sans exposer de clé sensible.
+const STUDENT_KEY='mco_student_auth_v1';
+export function loadStudentAuth(){ try{return JSON.parse(localStorage.getItem(STUDENT_KEY)||'null')}catch{return null} }
+export function saveStudentAuth(data){ localStorage.setItem(STUDENT_KEY,JSON.stringify(data)); }
+export function clearStudentAuth(){ localStorage.removeItem(STUDENT_KEY); }
+export async function signInStudent(identifier,password){
+  const data=await rpc('mco_student_login',{p_identifier:identifier,p_password:password});
+  saveStudentAuth({token:data.token,student:data.student});
+  return data;
+}
+export async function studentMe(){
+  const auth=loadStudentAuth(); if(!auth?.token) return null;
+  try{ const student=await rpc('mco_student_me',{p_token:auth.token}); saveStudentAuth({token:auth.token,student}); return student; }
+  catch{ clearStudentAuth(); return null; }
+}
+export async function requireStudent(){
+  if(!isConfigured){ location.href='./student-login.html'; return null; }
+  const student=await studentMe();
+  if(!student){
+    const next=encodeURIComponent(location.pathname.split('/').pop()+location.search);
+    location.href=`./student-login.html?next=${next}`; return null;
+  }
+  return {student,auth:loadStudentAuth()};
+}
+export async function signOutStudent(){
+  const a=loadStudentAuth();
+  try{ if(a?.token) await rpc('mco_student_logout',{p_token:a.token}); }catch{}
+  clearStudentAuth();
 }
 
 export function liveChannel(code, onRefresh) {

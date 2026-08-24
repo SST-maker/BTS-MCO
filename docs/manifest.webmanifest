@@ -28,6 +28,16 @@
   ],
   "shortcuts": [
     {
+      "name": "Espace élève",
+      "url": "./student-login.html",
+      "icons": [
+        {
+          "src": "./assets/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
       "name": "Rejoindre une partie",
       "url": "./join.html",
       "icons": [
@@ -38,8 +48,8 @@
       ]
     },
     {
-      "name": "Révision solo",
-      "url": "./solo.html",
+      "name": "Espace professeur",
+      "url": "./login.html",
       "icons": [
         {
           "src": "./assets/icons/icon-192.png",
