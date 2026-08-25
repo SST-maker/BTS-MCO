@@ -23,15 +23,45 @@ function wireFocus(){
 }
 
 function viewTransitions(){
-  // Cross-document transitions are CSS-driven when supported. Add stable names to signature elements.
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const crossDocument=('onpageswap' in window)||('onpagereveal' in window);
+
+  // Keep the app chrome visually anchored while only the working area changes.
   $('.v8-brand-lockup img,.student-brand img,.projection-brand img')?.style.setProperty('view-transition-name','mco-app-icon');
   $('.v8-brand-lockup span,.student-brand span')?.style.setProperty('view-transition-name','mco-brand-copy');
+  $('.v8-sidebar')?.style.setProperty('view-transition-name','mco-sidebar');
+  $('.v8-utility,.v8-student-topbar')?.style.setProperty('view-transition-name','mco-topbar');
+  $('#root')?.style.setProperty('view-transition-name','mco-page-content');
   const av=$('.student-mini-avatar,.v8-avatar-render,.v11-student-avatar');if(av)av.style.setProperty('view-transition-name','mco-student-avatar');
-  // Same-document anchor scrolling feels continuous without changing semantics.
+
+  // Morph the selected section instead of flashing a brand-new active state.
+  let active=null;
+  if(document.body.classList.contains('teacher-body'))active=$('.v8-side-nav a.active');
+  else if(document.body.classList.contains('student-body'))active=matchMedia('(max-width:900px)').matches?$('.student-mobile-dock a.active'):$('.v8-student-nav a.active');
+  active?.style.setProperty('view-transition-name','mco-active-section');
+
+  // Fallback for browsers without cross-document View Transitions: a very short
+  // opacity/translate handoff removes the raw white flash without making navigation slow.
+  if(!crossDocument&&!reduced){
+    document.documentElement.classList.add('mco-route-fallback');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.add('mco-route-ready')));
+    document.addEventListener('click',e=>{
+      if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+      const a=e.target.closest?.('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+      let u;try{u=new URL(a.href,location.href)}catch{return}
+      if(u.origin!==location.origin||u.href===location.href||u.hash&&u.pathname===location.pathname&&u.search===location.search)return;
+      if(!/\.html$|\/$/.test(u.pathname))return;
+      e.preventDefault();
+      document.documentElement.classList.add('mco-route-leaving');
+      setTimeout(()=>location.href=u.href,90);
+    },true);
+  }
+
+  // Same-document anchors keep the same continuity.
   document.addEventListener('click',e=>{
     const a=e.target.closest?.('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);const target=id&&document.getElementById(id);if(!target)return;e.preventDefault();
-    const go=()=>target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
-    if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.startViewTransition(go);else go();
+    const go=()=>target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+    if(document.startViewTransition&&!reduced)document.startViewTransition(go);else go();
     history.replaceState(null,'',`#${id}`);
   });
 }

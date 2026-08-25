@@ -354,3 +354,69 @@ html[data-mco-theme="dark"] .teacher-body .main.premium-main,html[data-mco-theme
     font-size:9px!important;
   }
 }
+
+/* ============================================================
+   V11.3 — Navigation transitions / route continuity
+   ============================================================ */
+@media (prefers-reduced-motion:no-preference){
+  /* Cross-document View Transitions: keep the shell stable and move only content. */
+  ::view-transition-old(root),
+  ::view-transition-new(root){animation:none!important;mix-blend-mode:normal!important}
+
+  ::view-transition-group(mco-sidebar),
+  ::view-transition-group(mco-topbar),
+  ::view-transition-group(mco-app-icon),
+  ::view-transition-group(mco-brand-copy){
+    animation-duration:180ms;
+    animation-timing-function:cubic-bezier(.2,.8,.2,1);
+  }
+
+  ::view-transition-group(mco-active-section){
+    animation-duration:260ms;
+    animation-timing-function:cubic-bezier(.22,1,.36,1);
+    z-index:20;
+  }
+  ::view-transition-old(mco-active-section),
+  ::view-transition-new(mco-active-section){
+    mix-blend-mode:normal;
+    height:100%;
+  }
+
+  ::view-transition-old(mco-page-content){
+    animation:mco-route-content-out 115ms cubic-bezier(.4,0,1,1) both;
+    mix-blend-mode:normal;
+  }
+  ::view-transition-new(mco-page-content){
+    animation:mco-route-content-in 250ms cubic-bezier(.22,1,.36,1) 22ms both;
+    mix-blend-mode:normal;
+  }
+
+  @keyframes mco-route-content-out{
+    from{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+    to{opacity:.18;transform:translate3d(0,-4px,0);filter:blur(.35px)}
+  }
+  @keyframes mco-route-content-in{
+    from{opacity:0;transform:translate3d(0,9px,0) scale(.998);filter:blur(1.2px)}
+    to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+  }
+
+  /* Fallback when cross-document VT is unavailable. */
+  html.mco-route-fallback:not(.mco-route-ready):not(.mco-route-leaving) body:not(.projection-body):not(.case-projection-body){opacity:0}
+  html.mco-route-fallback.mco-route-ready body:not(.projection-body):not(.case-projection-body){
+    opacity:1;
+    transition:opacity 170ms ease-out;
+  }
+  html.mco-route-fallback.mco-route-leaving body:not(.projection-body):not(.case-projection-body){
+    opacity:0;
+    transform:translate3d(0,-3px,0);
+    transition:opacity 90ms ease-in,transform 90ms ease-in;
+    pointer-events:none;
+  }
+
+
+  .teacher-body .v8-side-nav a.active,
+  .student-body .v8-student-nav a.active,
+  .student-body .student-mobile-dock a.active{
+    will-change:transform,opacity;
+  }
+}
