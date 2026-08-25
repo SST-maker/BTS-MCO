@@ -19,6 +19,7 @@ const ICONS={
   progression:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="m4 6 4-2 4 2 4-2 4 2"/></svg>',
   insight:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.4 14.8 11 12l2 1.8 3.4-4.3"/><path d="M16.4 9.5v3.2h-3.2"/></svg>',
   sheet:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3v14H6z"/><path d="M15 3.5v4h4M9 12h6M9 16h6M9 8h2"/></svg>',
+  case:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16" rx="2.5"/><path d="M9 4.5V3h6v1.5M8.5 9h7M8.5 13h4M8.5 17h6"/></svg>',
   bank:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>',
   live:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 2.8 6.7 13h4.4l-.4 8.2L17.3 11h-4.4z"/></svg>',
   chevron:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>',
@@ -43,6 +44,7 @@ const teacherNav=[
   ['students','./students.html','users','Élèves & accès','Comptes et suivi'],
   ['progression','./progression.html','progression','Progression classes','Ouvrir les leçons'],
   ['pedagogy','./pedagogy.html','insight','Pilotage pédagogique','Analyser la classe'],
+  ['cases','./cases.html','case','Cas pratiques','Classe, maison, PDF'],
   ['revisions','./revisions.html','sheet','Fiches de révision','Préparer les révisions'],
   ['bank','./bank.html','bank','Banque de questions','Explorer le contenu']
 ];
@@ -77,7 +79,7 @@ function teacherUtility(active){
   const date=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
   return `<header class="teacher-utility v8-utility"><div class="teacher-utility-left"><button class="utility-menu" id="mobileMenuToggle" type="button" aria-label="Ouvrir le menu">${uiIcon('menu')}</button><div class="v8-utility-page"><span>${meta.label}</span><small>${date}</small></div></div><div class="teacher-utility-actions"><button class="utility-search v8-search-command" id="openCommandPaletteTop" type="button">${uiIcon('search')}<span>Rechercher ou aller à…</span><kbd>⌘K</kbd></button><a class="utility-live v8-top-live" href="./teacher.html#create">${uiIcon('plus')}<span>Nouveau live</span></a></div></header>`;
 }
-function teacherMobileDock(active){return `<nav class="teacher-mobile-dock" aria-label="Navigation professeur">${teacherNav.slice(0,5).map(([key,href,ico,label])=>`<a href="${href}" class="${active===key?'active':''}">${uiIcon(ico)}<span>${label.replace(' & accès','').replace('Progression classes','Progression').replace('Pilotage pédagogique','Pilotage').replace('Fiches de révision','Fiches')}</span></a>`).join('')}</nav>`}
+function teacherMobileDock(active){const keys=['dashboard','students','progression','cases','revisions'];const nav=teacherNav.filter(([key])=>keys.includes(key));return `<nav class="teacher-mobile-dock" aria-label="Navigation professeur">${nav.map(([key,href,ico,label])=>`<a href="${href}" class="${active===key?'active':''}">${uiIcon(ico)}<span>${label.replace(' & accès','').replace('Progression classes','Progression').replace('Fiches de révision','Fiches').replace('Cas pratiques','Cas')}</span></a>`).join('')}</nav>`}
 
 export function installGlobalUX(active='dashboard'){
   const isTeacher=!!document.querySelector('.teacher-body');
