@@ -1,5 +1,5 @@
-const CACHE='mco-quiz-v11-1-live-modes';
-const RUNTIME='mco-quiz-v11-1-runtime';
+const CACHE='mco-quiz-v11-2-mobile-dock';
+const RUNTIME='mco-quiz-v11-2-runtime';
 const ASSETS=[
   './','./index.html','./offline.html','./teacher.html','./teacher.js','./students.html','./students.js','./progression.html','./progression.js',
   './pedagogy.html','./pedagogy.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
