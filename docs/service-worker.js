@@ -1,5 +1,5 @@
-const CACHE='mco-quiz-v10-native-experience';
-const RUNTIME='mco-quiz-v10-runtime';
+const CACHE='mco-quiz-v11-adaptive-design';
+const RUNTIME='mco-quiz-v11-runtime';
 const ASSETS=[
   './','./index.html','./offline.html','./teacher.html','./teacher.js','./students.html','./students.js','./progression.html','./progression.js',
   './pedagogy.html','./pedagogy.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
@@ -7,7 +7,7 @@ const ASSETS=[
   './login.html','./login.js','./reset.html','./reset.js','./student-login.html','./student-login.js','./student.html','./student.js',
   './student-profile.html','./student-profile.js','./avatar.js','./lesson.html','./lesson.js','./student-practice.html','./student-practice.js',
   './join.html','./join.js','./play.html','./play.js','./projection.html','./projection.js','./solo.html','./solo.js','./bank.html','./bank.js',
-  './styles.css','./v8.css','./v9.css','./v10.css','./common.js','./supabase-client.js','./native-store.js','./native-live.js','./native-ux.js','./push-client.js',
+  './styles.css','./v8.css','./v9.css','./v10.css','./v11.css','./common.js','./adaptive-ux.js','./supabase-client.js','./native-store.js','./native-live.js','./native-ux.js','./push-client.js',
   './manifest.webmanifest','./data/curriculum.json','./assets/icons/icon-64.png','./assets/icons/icon-96.png','./assets/icons/icon-192.png','./assets/icons/icon-512.png','./assets/icons/apple-touch-icon.png','./assets/icons/favicon-64.png'
 ];
 
