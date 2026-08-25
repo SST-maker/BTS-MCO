@@ -1,7 +1,8 @@
 import { rpc, liveChannel, isConfigured } from './supabase-client.js';
+import { localLiveChannel } from './native-live.js';
 import { $, qs, esc } from './common.js';
 import { avatarMarkup } from './avatar.js';
-const root=$('#root');const code=(qs('code')||'').toUpperCase();let state=null,channel=null,poller=null,timer=null,last='';
+const root=$('#root');const code=(qs('code')||'').toUpperCase();let state=null,channel=null,localChannel=null,poller=null,timer=null,last='';
 const nf=new Intl.NumberFormat('fr-FR');
 function joinUrl(){const u=new URL('./join.html',location.href);u.searchParams.set('code',code);return u.href}
 async function drawQr(sel='#projectionQr',size=250){const el=$(sel);if(!el)return;try{const mod=await import('https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm');const QR=mod.default||mod;const canvas=document.createElement('canvas');await QR.toCanvas(canvas,joinUrl(),{width:size,margin:1,color:{dark:'#071A3C',light:'#FFFFFF'}});el.innerHTML='';el.appendChild(canvas)}catch{el.innerHTML=`<div class="qr-fallback">${esc(joinUrl())}</div>`}}
@@ -31,5 +32,5 @@ function ended(){
 }
 function render(){if(state.status==='lobby')lobby();else if(state.status==='ended')ended();else question()}
 async function refresh(){try{state=await rpc('mco_projection_state',{p_code:code});const boardKey=(state.leaderboard||[]).map(r=>`${r.rank}:${r.score}`).join(',');const k=`${state.status}-${state.currentIndex}-${state.revealed}-${state.responseCount}-${state.playerCount}-${boardKey}`;if(k!==last){last=k;render()}}catch(e){root.innerHTML=`<div class="waiting"><div><h1>Projection indisponible</h1><p>${esc(e.message)}</p></div></div>`}}
-async function boot(){if(!isConfigured||code.length!==5){root.innerHTML='<div class="waiting"><div><h1>Code de partie requis</h1></div></div>';return}await refresh();channel=liveChannel(code,refresh);poller=setInterval(refresh,1000)}
+async function boot(){if(!isConfigured||code.length!==5){root.innerHTML='<div class="waiting"><div><h1>Code de partie requis</h1></div></div>';return}await refresh();channel=liveChannel(code,refresh);localChannel=localLiveChannel(code,refresh);poller=setInterval(refresh,1000)}
 boot();

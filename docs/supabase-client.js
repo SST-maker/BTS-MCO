@@ -1,3 +1,4 @@
+import { cacheGet, cacheSet, queueRpc, listRpcQueue, deleteQueuedRpc } from './native-store.js';
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 const cfg = window.MCO_CONFIG || {};
@@ -13,11 +14,51 @@ export const supabase = isConfigured
     })
   : null;
 
+const CACHEABLE_RPCS=new Set([
+  'mco_dashboard','mco_report','mco_teacher_students','mco_teacher_class_list','mco_teacher_class_progression','mco_teacher_lesson_overrides',
+  'mco_teacher_pedagogical_dashboard','mco_teacher_question_bank','mco_teacher_revision_catalog','mco_teacher_revision_sheet','mco_teacher_revision_chapter',
+  'mco_teacher_case_catalog','mco_teacher_case','mco_student_dashboard','mco_student_lessons','mco_student_lesson','mco_student_revision_catalog',
+  'mco_student_revision_sheet','mco_student_revision_chapter','mco_student_me'
+]);
+const QUEUEABLE_RPCS=new Set(['mco_student_mark_lesson','mco_student_update_avatar']);
+function rpcCacheKey(name,params){return `${name}:${JSON.stringify(params||{})}`}
+function offlineSynthetic(name,params){
+  if(name==='mco_student_mark_lesson')return {status:params?.p_status||'started',progress:params?.p_status==='mastered'?100:params?.p_status==='understood'?70:10,queued:true};
+  if(name==='mco_student_update_avatar')return {avatar:params?.p_avatar||{},queued:true};
+  return {queued:true};
+}
 export async function rpc(name, params = {}) {
   if (!supabase) throw new Error('Supabase n’est pas configuré. Renseigne docs/config.js.');
-  const { data, error } = await supabase.rpc(name, params);
-  if (error) throw new Error(error.message || 'Erreur Supabase');
-  return data;
+  const cacheable=CACHEABLE_RPCS.has(name), key=cacheable?rpcCacheKey(name,params):null;
+  if(!navigator.onLine){
+    if(QUEUEABLE_RPCS.has(name)){await queueRpc(name,params);window.dispatchEvent(new CustomEvent('mco:sync-queued',{detail:{name}}));return offlineSynthetic(name,params)}
+    if(cacheable){const cached=await cacheGet(key);if(cached!==null)return cached}
+    throw new Error('Connexion Internet requise pour cette action.');
+  }
+  try{
+    const { data, error } = await supabase.rpc(name, params);
+    if (error) throw new Error(error.message || 'Erreur Supabase');
+    if(cacheable)cacheSet(key,data).catch(()=>{});
+    return data;
+  }catch(err){
+    if(cacheable){const cached=await cacheGet(key);if(cached!==null){window.dispatchEvent(new CustomEvent('mco:offline-cache-used',{detail:{name}}));return cached}}
+    throw err;
+  }
+}
+
+export async function flushOfflineQueue(){
+  if(!supabase||!navigator.onLine)return 0;
+  const items=await listRpcQueue();let done=0;
+  for(const item of items){
+    try{const {error}=await supabase.rpc(item.name,item.params||{});if(error)throw error;await deleteQueuedRpc(item.id);done++}catch{}
+  }
+  if(done)window.dispatchEvent(new CustomEvent('mco:sync-flushed',{detail:{count:done}}));
+  return done;
+}
+if(typeof window!=='undefined'){
+  window.addEventListener('online',()=>flushOfflineQueue().catch(()=>{}));
+  window.addEventListener('mco:back-online',()=>flushOfflineQueue().catch(()=>{}));
+  setTimeout(()=>flushOfflineQueue().catch(()=>{}),1600);
 }
 
 export async function getSession(){
@@ -72,8 +113,9 @@ export async function signInStudent(identifier,password){
 }
 export async function studentMe(){
   const auth=loadStudentAuth(); if(!auth?.token) return null;
+  if(!navigator.onLine&&auth.student)return {...auth.student,offline:true};
   try{ const student=await rpc('mco_student_me',{p_token:auth.token}); saveStudentAuth({token:auth.token,student}); return student; }
-  catch{ clearStudentAuth(); return null; }
+  catch(e){ if(auth.student&&!navigator.onLine)return {...auth.student,offline:true}; clearStudentAuth(); return null; }
 }
 export async function requireStudent(){
   if(!isConfigured){ location.href='./student-login.html'; return null; }
@@ -88,6 +130,11 @@ export async function signOutStudent(){
   const a=loadStudentAuth();
   try{ if(a?.token) await rpc('mco_student_logout',{p_token:a.token}); }catch{}
   clearStudentAuth();
+}
+
+export async function sendNativePush(kind,payload={}){
+  if(!supabase)return false;
+  try{const appBase=new URL('./',location.href).href;const {error}=await supabase.functions.invoke('mco-push',{body:{kind,appBase,...payload}});if(error)throw error;return true}catch{return false}
 }
 
 export function liveChannel(code, onRefresh) {

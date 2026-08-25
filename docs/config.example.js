@@ -4,6 +4,8 @@
 window.MCO_CONFIG = {
   SUPABASE_URL: 'https://TON-PROJET.supabase.co',
   SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_XXXXXXXXXXXXXXXXXXXXXXXX',
+  // Facultatif : uniquement si tu actives le Web Push V10
+  WEB_PUSH_VAPID_PUBLIC_KEY: '',
   APP_NAME: 'MCO Quiz Arena',
   BRAND: 'NCR Solutions BTS MCO'
 };

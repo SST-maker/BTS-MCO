@@ -74,7 +74,7 @@ class Doc{
     const bytes=new Uint8Array(pdf.length);for(let i=0;i<pdf.length;i++)bytes[i]=pdf.charCodeAt(i)&255;return new Blob([bytes],{type:'application/pdf'});
   }
 }
-export function downloadCasePdf(c,{includeCorrection=false,homework=false}={}){
+export function buildCasePdfBlob(c,{includeCorrection=false,homework=false}={}){
   const meta=`${c.subject} ${c.year} - ${c.chapter} - leçon ${c.lesson}`;const d=new Doc();d.paintPage(meta);
   d.text(homework?'CAS PRATIQUE - TRAVAIL A LA MAISON':'CAS PRATIQUE - VERSION ELEVE',46,d.y,9,true,BLUE);d.y-=26;
   d.paragraph(c.title,{size:20,bold:true,color:NAVY,max:48,leading:23,meta});
@@ -86,5 +86,14 @@ export function downloadCasePdf(c,{includeCorrection=false,homework=false}={}){
   d.section('Travail à réaliser',meta);(c.tasks||[]).forEach((x,i)=>d.task(x,i,meta));
   d.section('Barème indicatif',meta);(c.rubric||[]).forEach(r=>d.paragraph(`${r.criterion} — ${r.points} points`,{size:9,max:82,meta}));
   if(includeCorrection){d.section('Corrigé professeur',meta);(c.correction||[]).forEach((x,i)=>d.correction(x,i,meta));d.section('Note professeur',meta);d.paragraph(c.teacherNote||'',{size:9,max:82,meta});}
-  const blob=d.build(meta);const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`Cas_${c.subject}_${c.year}_${String(c.lesson).replace('.','-')}_${includeCorrection?'CORRIGE':'ELEVE'}.pdf`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+  const blob=d.build(meta);const filename=`Cas_${c.subject}_${c.year}_${String(c.lesson).replace('.','-')}_${includeCorrection?'CORRIGE':'ELEVE'}.pdf`;
+  return {blob,filename};
+}
+export function downloadCasePdf(c,opts={}){
+  const {blob,filename}=buildCasePdfBlob(c,opts);const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+export async function shareCasePdf(c,opts={}){
+  const {blob,filename}=buildCasePdfBlob(c,opts);const file=new File([blob],filename,{type:'application/pdf'});
+  if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){try{await navigator.share({title:c.title||'Cas pratique MCO Quiz Arena',text:`${c.subject} ${c.year} • ${c.chapter} • Leçon ${c.lesson}`,files:[file]});return true}catch(e){if(e?.name==='AbortError')return false}}
+  downloadCasePdf(c,opts);return false;
 }
