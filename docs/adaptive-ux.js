@@ -23,85 +23,59 @@ function wireFocus(){
 }
 
 function activeSectionPill(){
-  const mobile=matchMedia('(max-width:900px)').matches;
-  let nav=null,active=null;
-  if(document.body.classList.contains('teacher-body')){
-    nav=$('.v8-side-nav');active=nav?.querySelector('a.active')||null;
-  }else if(document.body.classList.contains('student-body')){
-    nav=mobile?$('.student-mobile-dock'):$('.v8-student-nav');active=nav?.querySelector('a.active')||null;
-  }
-  $$('.mco-active-pill').forEach(p=>{if(p.parentElement!==nav)p.remove()});
-  if(!nav||!active)return false;
-  nav.classList.add('mco-nav-pill-host');
-  let pill=nav.querySelector(':scope > .mco-active-pill');
-  if(!pill){pill=document.createElement('i');pill.className='mco-active-pill';pill.setAttribute('aria-hidden','true');nav.prepend(pill)}
-  pill.style.setProperty('view-transition-name','mco-active-pill');
-  const place=()=>requestAnimationFrame(()=>{
-    if(!pill.isConnected||!active.isConnected)return;
-    const nr=nav.getBoundingClientRect(),ar=active.getBoundingClientRect();
-    pill.style.width=`${Math.max(0,ar.width)}px`;pill.style.height=`${Math.max(0,ar.height)}px`;
-    pill.style.transform=`translate3d(${ar.left-nr.left+nav.scrollLeft}px,${ar.top-nr.top+nav.scrollTop}px,0)`;
-  });
-  place();
-  if(!nav.dataset.mcoPillWired){
-    nav.dataset.mcoPillWired='1';
-    addEventListener('resize',place,{passive:true});
-    nav.addEventListener('scroll',place,{passive:true});
-  }
-  return true;
+  // V11.5: no floating/morphing pill.
+  // The active state belongs to each nav item; this avoids geometry jumps
+  // between documents and preserves the fixed iPhone dock.
+  $$('.mco-active-pill').forEach(p=>p.remove());
+  $$('.mco-nav-pill-host').forEach(n=>n.classList.remove('mco-nav-pill-host'));
+  return false;
 }
 
 function routeFallbackEntry(){
-  if(('onpageswap' in window)||('onpagereveal' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  let marked=false;try{marked=sessionStorage.getItem('mco:route-handoff')==='1';sessionStorage.removeItem('mco:route-handoff')}catch{}
-  if(!marked)return;
-  document.documentElement.classList.add('mco-route-fallback','mco-route-entering');
-  const root=$('#root');
-  if(root&&!root.childElementCount)root.innerHTML='<div class="mco-transition-placeholder" aria-hidden="true"><i></i><i></i><i></i></div>';
-  const reveal=()=>{
-    const r=$('#root');if(!r)return;
-    const real=r.childElementCount&&(!r.querySelector('.mco-transition-placeholder')||r.childElementCount>1);
-    if(real){document.documentElement.classList.add('mco-route-ready');document.documentElement.classList.remove('mco-route-entering');return true}
-    return false;
-  };
-  if(!reveal()){
-    const mo=new MutationObserver(()=>{if(reveal())mo.disconnect()});mo.observe(root||document.body,{childList:true,subtree:true});
-    setTimeout(()=>{mo.disconnect();document.documentElement.classList.add('mco-route-ready');document.documentElement.classList.remove('mco-route-entering')},700);
-  }
+  // V11.5: unsupported browsers navigate normally.
+  // A fast native navigation is cleaner than hiding/fading the whole page.
+  document.documentElement.classList.remove(
+    'mco-route-fallback','mco-route-entering','mco-route-ready','mco-route-leaving'
+  );
+  return false;
 }
 
 function viewTransitions(){
   const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const crossDocument=('onpageswap' in window)||('onpagereveal' in window);
 
-  // Freeze the persistent shell. Only the working canvas is allowed to dissolve.
+  // Persistent chrome keeps a stable identity across documents.
   $('.v8-brand-lockup img,.student-brand img,.projection-brand img')?.style.setProperty('view-transition-name','mco-app-icon');
   $('.v8-brand-lockup span,.student-brand span')?.style.setProperty('view-transition-name','mco-brand-copy');
   $('.v8-sidebar')?.style.setProperty('view-transition-name','mco-sidebar');
   $('.v8-utility,.v8-student-topbar')?.style.setProperty('view-transition-name','mco-topbar');
   $('.student-mobile-dock')?.style.setProperty('view-transition-name','mco-student-dock');
   $('#root')?.style.setProperty('view-transition-name','mco-page-content');
-  const av=$('.student-mini-avatar,.v8-avatar-render,.v11-student-avatar');if(av)av.style.setProperty('view-transition-name','mco-student-avatar');
-  activeSectionPill();
+  const av=$('.student-mini-avatar,.v8-avatar-render,.v11-student-avatar');
+  if(av)av.style.setProperty('view-transition-name','mco-student-avatar');
 
-  // Mark every internal navigation so the non-View-Transition fallback can hand off cleanly.
+  // Do not intercept normal page navigation anymore. Browsers supporting
+  // cross-document View Transitions use the CSS transition; the others switch
+  // immediately, which is cleaner than an artificial fallback fade.
   document.addEventListener('click',e=>{
     if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-    const a=e.target.closest?.('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+    const a=e.target.closest?.('a[href]');
+    if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
     let u;try{u=new URL(a.href,location.href)}catch{return}
-    if(u.origin!==location.origin||u.href===location.href||u.hash&&u.pathname===location.pathname&&u.search===location.search)return;
-    if(!/\.html$|\/$/.test(u.pathname))return;
-    try{sessionStorage.setItem('mco:route-handoff','1')}catch{}
-    if(crossDocument||reduced)return;
-    e.preventDefault();
-    document.documentElement.classList.add('mco-route-fallback','mco-route-leaving');
-    setTimeout(()=>location.href=u.href,72);
+    if(u.origin!==location.origin||u.href===location.href)return;
+    if(u.hash&&u.pathname===location.pathname&&u.search===location.search)return;
+    // Intentionally no preventDefault / delay.
   },true);
 
-  // Same-document anchors: no page-like animation, just a native smooth handoff.
+  // Same-document anchors remain smooth.
   document.addEventListener('click',e=>{
-    const a=e.target.closest?.('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);const target=id&&document.getElementById(id);if(!target)return;e.preventDefault();
-    target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});history.replaceState(null,'',`#${id}`);
+    const a=e.target.closest?.('a[href^="#"]');
+    if(!a)return;
+    const id=a.getAttribute('href').slice(1);
+    const target=id&&document.getElementById(id);
+    if(!target)return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+    history.replaceState(null,'',`#${id}`);
   });
 }
 
@@ -153,7 +127,7 @@ function liveKeyboardHint(){
   const utility=$('.v8-utility-page');if(utility&&!utility.querySelector('.v11-live-pill'))utility.insertAdjacentHTML('afterbegin','<span class="v11-live-pill"><i></i> LIVE</span>');
   return !!utility;
 }
-function lateDecorations(){wireFocus();liveKeyboardHint();viewTransitions();activeSectionPill()}
+function lateDecorations(){wireFocus();liveKeyboardHint();viewTransitions()}
 
 function init(){bootClass();routeFallbackEntry();lateDecorations();contentProgress();motionFeedback();scrollAwareChrome();contextualMenus();emptyStatePolish();const late=new MutationObserver(()=>lateDecorations());late.observe(document.body,{childList:true,subtree:true});setTimeout(()=>late.disconnect(),6000)}
 init();
