@@ -420,3 +420,54 @@ html[data-mco-theme="dark"] .teacher-body .main.premium-main,html[data-mco-theme
     will-change:transform,opacity;
   }
 }
+
+
+/* ============================================================
+   V11.4 — Signature transitions
+   Philosophy: shell stays perfectly still, content dissolves cleanly,
+   active navigation glides as one physical indicator. No blur, no zoom.
+   ============================================================ */
+.mco-nav-pill-host{position:relative!important;isolation:isolate}
+.mco-nav-pill-host>a{position:relative;z-index:2}
+.mco-active-pill{position:absolute;z-index:1;left:0;top:0;display:block;pointer-events:none;border-radius:12px;transition:width 190ms cubic-bezier(.22,1,.36,1),height 190ms cubic-bezier(.22,1,.36,1),transform 190ms cubic-bezier(.22,1,.36,1);will-change:transform,width,height}
+.teacher-body .v8-side-nav.mco-nav-pill-host>.mco-active-pill{background:rgba(255,255,255,.072);box-shadow:inset 3px 0 0 var(--mco-blue),inset 0 0 0 1px rgba(255,255,255,.035)}
+.student-body .v8-student-nav.mco-nav-pill-host>.mco-active-pill{background:rgba(255,255,255,.96);box-shadow:0 4px 14px rgba(10,42,86,.065),inset 0 0 0 1px rgba(30,78,140,.045)}
+.student-body .student-mobile-dock.mco-nav-pill-host>.mco-active-pill{background:rgba(255,255,255,.115);box-shadow:inset 0 0 0 1px rgba(255,255,255,.055);border-radius:16px}
+.teacher-body .v8-side-nav.mco-nav-pill-host>a.active{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
+.student-body .v8-student-nav.mco-nav-pill-host>a.active,.student-body .student-mobile-dock.mco-nav-pill-host>a.active{background:transparent!important;box-shadow:none!important}
+
+@media (prefers-reduced-motion:no-preference){
+  /* Root never flashes/fades: it is only a capture canvas. */
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important;mix-blend-mode:normal!important}
+
+  /* Persistent chrome is visually pinned. */
+  ::view-transition-group(mco-sidebar),::view-transition-group(mco-topbar),::view-transition-group(mco-student-dock),::view-transition-group(mco-app-icon),::view-transition-group(mco-brand-copy){animation-duration:1ms!important;animation-timing-function:linear!important}
+  ::view-transition-old(mco-sidebar),::view-transition-new(mco-sidebar),::view-transition-old(mco-topbar),::view-transition-new(mco-topbar),::view-transition-old(mco-student-dock),::view-transition-new(mco-student-dock),::view-transition-old(mco-app-icon),::view-transition-new(mco-app-icon),::view-transition-old(mco-brand-copy),::view-transition-new(mco-brand-copy){animation:none!important;mix-blend-mode:normal!important}
+
+  /* One physical selection pill moves between sections; text/icons do not distort. */
+  ::view-transition-group(mco-active-pill){animation-duration:210ms!important;animation-timing-function:cubic-bezier(.22,1,.36,1)!important;z-index:80}
+  ::view-transition-old(mco-active-pill),::view-transition-new(mco-active-pill){animation:none!important;mix-blend-mode:normal!important}
+
+  /* Content transition: a restrained dissolve. No blur, no scale, no "web page slide". */
+  ::view-transition-group(mco-page-content){overflow:clip;animation-timing-function:cubic-bezier(.22,1,.36,1)!important}
+  ::view-transition-old(mco-page-content){animation:mco-signature-out 82ms cubic-bezier(.4,0,1,1) both!important;mix-blend-mode:normal!important}
+  ::view-transition-new(mco-page-content){animation:mco-signature-in 178ms cubic-bezier(.22,1,.36,1) 18ms both!important;mix-blend-mode:normal!important}
+  @keyframes mco-signature-out{from{opacity:1}to{opacity:0}}
+  @keyframes mco-signature-in{from{opacity:0;transform:translate3d(0,3px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+
+  /* Non-supporting browsers: only the content hands off, never the whole app shell. */
+  html.mco-route-fallback.mco-route-leaving .teacher-body #root,
+  html.mco-route-fallback.mco-route-leaving .student-body #root,
+  html.mco-route-fallback.mco-route-leaving .auth-body #root{opacity:0;transform:translate3d(0,-2px,0);transition:opacity 72ms ease-in,transform 72ms ease-in;pointer-events:none}
+  html.mco-route-fallback.mco-route-entering .teacher-body #root,
+  html.mco-route-fallback.mco-route-entering .student-body #root,
+  html.mco-route-fallback.mco-route-entering .auth-body #root{opacity:0;transform:translate3d(0,3px,0)}
+  html.mco-route-fallback.mco-route-ready .teacher-body #root,
+  html.mco-route-fallback.mco-route-ready .student-body #root,
+  html.mco-route-fallback.mco-route-ready .auth-body #root{opacity:1;transform:none;transition:opacity 155ms ease-out,transform 155ms cubic-bezier(.22,1,.36,1)}
+}
+
+.mco-transition-placeholder{min-height:48vh;padding:34px 26px;display:grid;align-content:start;gap:14px;opacity:.34}
+.mco-transition-placeholder i{display:block;height:14px;border-radius:999px;background:color-mix(in srgb,var(--mco-text-2) 14%,transparent)}
+.mco-transition-placeholder i:nth-child(1){width:min(42%,320px);height:22px}.mco-transition-placeholder i:nth-child(2){width:min(66%,520px)}.mco-transition-placeholder i:nth-child(3){width:100%;height:180px;border-radius:24px;margin-top:12px}
+@media (prefers-reduced-motion:reduce){.mco-active-pill{transition:none!important}}
