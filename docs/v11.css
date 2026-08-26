@@ -625,3 +625,248 @@ html.mco-route-fallback .auth-body #root{
     transition:none!important;
   }
 }
+
+
+/* ============================================================
+   V11.6 — Contraste UI / lisibilité renforcée
+   ============================================================ */
+
+:root{
+  --mco-text-strong:#f7fbff;
+  --mco-text:#d9e7ff;
+  --mco-text-soft:#b8c9e8;
+  --mco-text-muted:#95adcf;
+  --mco-surface-1:#0f2550;
+  --mco-surface-2:#123164;
+  --mco-surface-3:#163a77;
+  --mco-card-border:rgba(178,206,255,.16);
+  --mco-card-shadow:0 14px 40px rgba(1,13,37,.22);
+}
+
+/* Lisibilité globale sur fond sombre */
+body,
+.teacher-body,
+.student-body,
+.auth-body{
+  color:var(--mco-text);
+}
+
+p, li, dd, dt, small, .muted, .subtle, .secondary, .caption{
+  color:var(--mco-text-soft)!important;
+}
+
+h1,h2,h3,h4,h5,h6,
+.display,.display-xl,.display-lg,.hero-title,.headline,.title-hero,
+.v11-hero h1,.v11-hero h2,.marketing-hero h1,.marketing-hero h2{
+  color:var(--mco-text-strong)!important;
+  text-shadow:none!important;
+}
+
+strong,.accent,.text-accent,.highlight{
+  color:#9fd3ff!important;
+}
+
+.eyebrow,.kicker,.section-kicker,.hero-kicker,.overline{
+  color:#89bfff!important;
+  opacity:1!important;
+  letter-spacing:.16em;
+}
+
+/* Landing / promo */
+.landing-shell,
+.v11-landing,
+.mco-landing,
+.marketing-shell,
+.home-shell{
+  color:var(--mco-text);
+}
+
+.landing-shell .panel,
+.v11-landing .panel,
+.mco-landing .panel,
+.marketing-card,
+.feature-card,
+.story-card,
+.glass-card,
+.card-premium,
+.card-dark,
+.card-blue{
+  background:linear-gradient(180deg, rgba(20,52,103,.94), rgba(12,35,76,.94))!important;
+  border:1px solid var(--mco-card-border)!important;
+  box-shadow:var(--mco-card-shadow)!important;
+  color:var(--mco-text)!important;
+}
+
+.marketing-card p,
+.feature-card p,
+.story-card p,
+.glass-card p,
+.card-premium p,
+.card-dark p,
+.card-blue p{
+  color:var(--mco-text-soft)!important;
+}
+
+/* Chips / switcher du haut */
+.top-switcher a,
+.top-switcher button,
+.header-chip,
+.header-pill,
+.hero-chip,
+.install-chip,
+.install-app-chip,
+.segmented-nav a,
+.segmented-nav button{
+  background:rgba(255,255,255,.08)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  color:#eef6ff!important;
+}
+
+.top-switcher a.active,
+.top-switcher button.active,
+.header-chip.active,
+.header-pill.active,
+.hero-chip.active,
+.install-chip.active,
+.install-app-chip.active,
+.segmented-nav a.active,
+.segmented-nav button.active{
+  background:#ffffff!important;
+  color:#173a73!important;
+  border-color:transparent!important;
+  box-shadow:0 10px 30px rgba(7,27,57,.18)!important;
+}
+
+/* CTA */
+.btn-primary,
+.cta-primary,
+.primary-cta,
+button.primary{
+  background:linear-gradient(180deg,#ffffff,#eef5ff)!important;
+  color:#13315f!important;
+  border:1px solid rgba(255,255,255,.55)!important;
+}
+.btn-secondary,
+.cta-secondary,
+.secondary-cta,
+button.secondary{
+  background:rgba(255,255,255,.08)!important;
+  color:#eef6ff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+}
+
+/* Mini navigation / ancres */
+.subnav a,
+.section-tabs a,
+.mini-tabs a,
+.landing-anchor-nav a,
+.anchor-strip a{
+  color:#bfd4f3!important;
+}
+.subnav a.active,
+.section-tabs a.active,
+.mini-tabs a.active,
+.landing-anchor-nav a.active,
+.anchor-strip a.active{
+  color:#ffffff!important;
+}
+
+/* Cartes applicatives */
+.v8-card,
+.v11-card,
+.dashboard-card,
+.metric-card,
+.stat-card,
+.lesson-card,
+.live-card,
+.sheet-card,
+.widget-card,
+.panel-card{
+  background:linear-gradient(180deg, rgba(17,46,94,.98), rgba(12,31,66,.98))!important;
+  border:1px solid rgba(164,196,244,.14)!important;
+  box-shadow:0 16px 42px rgba(6,20,47,.18)!important;
+  color:var(--mco-text)!important;
+}
+.v8-card h2,.v8-card h3,.v11-card h2,.v11-card h3,
+.dashboard-card h2,.dashboard-card h3,
+.metric-card h2,.metric-card h3,
+.stat-card h2,.stat-card h3,
+.lesson-card h2,.lesson-card h3,
+.live-card h2,.live-card h3,
+.sheet-card h2,.sheet-card h3,
+.widget-card h2,.widget-card h3,
+.panel-card h2,.panel-card h3{
+  color:#ffffff!important;
+}
+.v8-card p,.v11-card p,
+.dashboard-card p,.metric-card p,.stat-card p,.lesson-card p,.live-card p,.sheet-card p,.widget-card p,.panel-card p{
+  color:var(--mco-text-soft)!important;
+}
+
+/* Inputs */
+input,select,textarea{
+  color:#eef6ff!important;
+  background:rgba(255,255,255,.06)!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+input::placeholder, textarea::placeholder{
+  color:#9fb2cf!important;
+}
+
+/* Top bars claires */
+.v8-student-topbar,
+.v8-utility,
+.app-topbar,
+.mobile-topbar{
+  color:#14345f!important;
+}
+.v8-student-topbar .subtle,
+.v8-utility .subtle,
+.app-topbar .subtle,
+.mobile-topbar .subtle{
+  color:#5f7ca4!important;
+}
+
+/* Mobile */
+@media (max-width:900px){
+  .landing-shell,
+  .v11-landing,
+  .mco-landing,
+  .marketing-shell,
+  .home-shell{
+    background:
+      radial-gradient(circle at top right, rgba(65,136,255,.24), transparent 32%),
+      linear-gradient(180deg, #072252 0%, #092a63 45%, #08204a 100%)!important;
+  }
+
+  .landing-shell .panel,
+  .v11-landing .panel,
+  .mco-landing .panel,
+  .marketing-card,
+  .feature-card,
+  .story-card,
+  .glass-card,
+  .card-premium,
+  .card-dark,
+  .card-blue{
+    background:linear-gradient(180deg, rgba(19,50,100,.96), rgba(12,31,67,.97))!important;
+  }
+
+  .display,.display-xl,.display-lg,.hero-title,.headline,.title-hero,
+  .v11-hero h1,.marketing-hero h1{
+    color:#eef7ff!important;
+  }
+
+  .top-switcher a,
+  .top-switcher button,
+  .header-chip,
+  .header-pill,
+  .hero-chip,
+  .install-chip,
+  .install-app-chip,
+  .segmented-nav a,
+  .segmented-nav button{
+    min-height:44px;
+    font-weight:600;
+  }
+}
