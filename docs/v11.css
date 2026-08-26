@@ -3195,3 +3195,408 @@ input::placeholder, textarea::placeholder{
     animation-iteration-count:infinite!important;
   }
 }
+
+
+/* ============================================================
+   V12.6 — ULTRA LISIBILITÉ
+   Contraste durci sur TOUTES les surfaces claires/sombres
+   ============================================================ */
+
+/* ---------- TITRES ACCUEIL SUR FOND SOMBRE ---------- */
+.home-v8.v124-keynote .v8-home-workflow,
+.home-v8.v124-keynote .v8-home-workflow h1,
+.home-v8.v124-keynote .v8-home-workflow h2,
+.home-v8.v124-keynote .v8-home-workflow h3,
+.home-v8.v124-keynote .v8-home-workflow h4{
+  color:#f8fbff!important;
+  opacity:1!important;
+  text-shadow:0 2px 18px rgba(0,0,0,.12)!important;
+}
+.home-v8.v124-keynote .v8-home-workflow p,
+.home-v8.v124-keynote .v8-home-workflow small{
+  color:#c7d8ed!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-workflow-head>span{
+  color:#71b9ff!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article{
+  background:linear-gradient(180deg,#ffffff 0%,#f6faff 100%)!important;
+  border-color:#d7e4f2!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article h1,
+.home-v8.v124-keynote .v8-workflow-grid article h2,
+.home-v8.v124-keynote .v8-workflow-grid article h3,
+.home-v8.v124-keynote .v8-workflow-grid article h4,
+.home-v8.v124-keynote .v8-workflow-grid article strong,
+.home-v8.v124-keynote .v8-workflow-grid article b{
+  color:#123b6b!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article p,
+.home-v8.v124-keynote .v8-workflow-grid article small,
+.home-v8.v124-keynote .v8-workflow-grid article span{
+  color:#557393!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article .v8-live-code,
+.home-v8.v124-keynote .v8-workflow-grid article code{
+  color:#0b5ca7!important;
+}
+
+/* ---------- CARTE LIVE / CODE ---------- */
+.home-v8.v124-keynote .v8-live-demo,
+.home-v8.v124-keynote .v8-live-demo *{
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-live-demo{
+  background:linear-gradient(135deg,#0b315f,#1a4c80)!important;
+}
+.home-v8.v124-keynote .v8-live-demo,
+.home-v8.v124-keynote .v8-live-demo b,
+.home-v8.v124-keynote .v8-live-demo strong,
+.home-v8.v124-keynote .v8-live-demo span,
+.home-v8.v124-keynote .v8-live-demo small{
+  color:#ffffff!important;
+}
+
+/* ---------- EN-TÊTES PROFESSEUR ---------- */
+.teacher-body .dashboard-head h1,
+.teacher-body .v8-page-head h1,
+.teacher-body .v9-page-head h1,
+.teacher-body .v11-today-intro h1{
+  color:#0a315f!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.teacher-body .dashboard-head p,
+.teacher-body .v8-page-head p,
+.teacher-body .v9-page-head p,
+.teacher-body .v11-today-intro p{
+  color:#4d6f95!important;
+  opacity:1!important;
+}
+.teacher-body .eyebrow,
+.teacher-body .section-kicker,
+.teacher-body .v11-eyebrow,
+.teacher-body .v9-kicker{
+  color:#366a9f!important;
+  opacity:1!important;
+}
+
+/* ---------- BOUTONS GÉNÉRAUX ---------- */
+.teacher-body .btn,
+.teacher-body button,
+.teacher-body a.btn{
+  opacity:1!important;
+}
+.teacher-body .btn.primary,
+.teacher-body button.primary,
+.teacher-body a.btn.primary{
+  color:#ffffff!important;
+  background:#0d66bf!important;
+  border-color:#0d66bf!important;
+}
+.teacher-body .btn.soft,
+.teacher-body button.soft,
+.teacher-body a.btn.soft{
+  color:#173f70!important;
+  background:#ffffff!important;
+  border-color:#cfddec!important;
+}
+.teacher-body .btn.glass,
+.teacher-body button.glass{
+  color:#ffffff!important;
+}
+.teacher-body .btn.gold,
+.teacher-body button.gold{
+  color:#2b2200!important;
+}
+
+/* ---------- FILTRES / SELECT / INPUT ---------- */
+.teacher-body .revision-filter-card,
+.teacher-body .v9-case-toolbar,
+.teacher-body .card.panel{
+  background:#ffffff!important;
+  border-color:#d5e2ef!important;
+  opacity:1!important;
+}
+.teacher-body .revision-filters label,
+.teacher-body .v9-case-filters label{
+  color:#527091!important;
+  opacity:1!important;
+}
+.teacher-body select,
+.teacher-body input,
+.teacher-body textarea{
+  color:#173f70!important;
+  background:#ffffff!important;
+  border-color:#ccdbea!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#173f70!important;
+}
+.teacher-body select option{
+  color:#173f70!important;
+  background:#ffffff!important;
+}
+.teacher-body select:disabled,
+.teacher-body input:disabled{
+  color:#48698e!important;
+  background:#eef4fa!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#48698e!important;
+}
+
+/* ---------- FICHES DE RÉVISION : CATALOGUE ---------- */
+.teacher-body .revision-catalog-head .eyebrow{
+  color:#2c6eae!important;
+}
+.teacher-body .revision-catalog-head h2,
+.teacher-body .revision-catalog-head h2 span{
+  color:#173f70!important;
+  opacity:1!important;
+}
+.teacher-body .revision-grid{
+  gap:14px!important;
+}
+.teacher-body .revision-card{
+  background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%)!important;
+  border:1px solid #d4e1ef!important;
+  color:#173f70!important;
+  opacity:1!important;
+  box-shadow:0 8px 22px rgba(10,45,92,.055)!important;
+}
+.teacher-body .revision-card *,
+.teacher-body .revision-card::before,
+.teacher-body .revision-card::after{
+  opacity:1!important;
+}
+.teacher-body .revision-card-top>span:last-child{
+  color:#587493!important;
+}
+.teacher-body .revision-card>small{
+  color:#5780ad!important;
+}
+.teacher-body .revision-card h3{
+  color:#123b6d!important;
+  font-weight:800!important;
+}
+.teacher-body .revision-card p{
+  color:#4f6e90!important;
+}
+.teacher-body .revision-card-foot{
+  border-top:1px solid #e0e9f3!important;
+}
+.teacher-body .revision-card-foot span{
+  color:#173f70!important;
+  font-weight:700!important;
+}
+.teacher-body .revision-card-foot b{
+  color:#0a67cf!important;
+  font-weight:850!important;
+}
+.teacher-body .subject-badge{
+  color:#0b5fae!important;
+  background:#e9f3ff!important;
+  border-color:#cfe3fa!important;
+}
+.teacher-body .subject-badge.go{
+  color:#165e70!important;
+  background:#e9f8fb!important;
+  border-color:#ccecf1!important;
+}
+
+/* ---------- FICHE OUVERTE ---------- */
+.teacher-body .revision-paper,
+.teacher-body .revision-paper-hero,
+.teacher-body .revision-block{
+  opacity:1!important;
+}
+.teacher-body .revision-paper h1,
+.teacher-body .revision-paper h2,
+.teacher-body .revision-paper h3,
+.teacher-body .revision-block-title{
+  color:#123b6b!important;
+}
+.teacher-body .revision-paper p,
+.teacher-body .revision-paper li,
+.teacher-body .revision-paper small,
+.teacher-body .revision-paper span{
+  color:#4d6d90!important;
+}
+.teacher-body .revision-check-grid>div,
+.teacher-body .definition-grid article{
+  color:#173f70!important;
+  background:#ffffff!important;
+  border-color:#d9e5f1!important;
+}
+
+/* ---------- CAS PRATIQUES ---------- */
+.teacher-body .v9-case-card{
+  background:linear-gradient(180deg,#ffffff,#f8fbff)!important;
+  border-color:#d4e1ef!important;
+  color:#173f70!important;
+}
+.teacher-body .v9-case-card *,
+.teacher-body .v9-case-card::before,
+.teacher-body .v9-case-card::after{
+  opacity:1!important;
+}
+.teacher-body .v9-case-card h3{
+  color:#123b6b!important;
+}
+.teacher-body .v9-case-card p{
+  color:#4f6f92!important;
+}
+.teacher-body .v9-case-lesson,
+.teacher-body .v9-case-meta{
+  color:#5b7697!important;
+}
+.teacher-body .v9-difficulty{
+  color:#235d9f!important;
+  background:#eaf3ff!important;
+}
+.teacher-body .v9-difficulty.challenge{
+  color:#6e4f00!important;
+  background:#fff0bd!important;
+}
+.teacher-body .v9-case-open{
+  color:#0b67ce!important;
+}
+
+/* ---------- CASE INTRO SOMBRE ---------- */
+.teacher-body .v9-case-intro{
+  background:linear-gradient(130deg,#0a2a58,#1154a7)!important;
+}
+.teacher-body .v9-case-intro h2{
+  color:#ffffff!important;
+}
+.teacher-body .v9-case-intro p{
+  color:#d5e4f6!important;
+}
+.teacher-body .v9-case-intro .v9-kicker{
+  color:#95c5ff!important;
+}
+.teacher-body .v9-case-feature-row>span{
+  color:#ffffff!important;
+  background:rgba(255,255,255,.12)!important;
+  border-color:rgba(255,255,255,.20)!important;
+}
+
+/* ---------- DASHBOARD ---------- */
+.teacher-body .v11-signal-panel{
+  background:#ffffff!important;
+  border-color:#d6e3f0!important;
+}
+.teacher-body .v11-signal-panel h3{
+  color:#123b6b!important;
+}
+.teacher-body .v11-signal strong{
+  color:#0f67bb!important;
+}
+.teacher-body .v11-signal span{
+  color:#5c7898!important;
+}
+.teacher-body .v11-next-action h2{
+  color:#ffffff!important;
+}
+.teacher-body .v11-next-action p{
+  color:#d7e5f5!important;
+}
+.teacher-body .v11-activity-copy b,
+.teacher-body .v11-action-link b{
+  color:#173f70!important;
+}
+.teacher-body .v11-activity-copy small,
+.teacher-body .v11-action-link small{
+  color:#607a98!important;
+}
+
+/* ---------- SIDEBAR ---------- */
+.teacher-body .v8-side-nav a,
+.teacher-body .v8-side-nav a b,
+.teacher-body .v8-side-nav a span{
+  color:#d9e7f8!important;
+}
+.teacher-body .v8-side-nav a small{
+  color:#8faacb!important;
+}
+.teacher-body .v8-side-nav a.active,
+.teacher-body .v8-side-nav a.active b,
+.teacher-body .v8-side-nav a.active span{
+  color:#ffffff!important;
+}
+.teacher-body .v8-side-brand b{
+  color:#ffffff!important;
+}
+.teacher-body .v8-side-brand small{
+  color:#9bb7d8!important;
+}
+
+/* ---------- TOPBAR PROF ---------- */
+.teacher-body .topbar,
+.teacher-body .teacher-topbar{
+  color:#173f70!important;
+}
+.teacher-body .topbar button,
+.teacher-body .teacher-topbar button,
+.teacher-body .topbar a,
+.teacher-body .teacher-topbar a{
+  color:#173f70!important;
+}
+.teacher-body .topbar .primary,
+.teacher-body .teacher-topbar .primary{
+  color:#ffffff!important;
+}
+
+/* ---------- NE JAMAIS LAISSER DU BLANC SUR UNE CARTE BLANCHE ---------- */
+.teacher-body .revision-card h1,
+.teacher-body .revision-card h2,
+.teacher-body .revision-card h3,
+.teacher-body .revision-card h4,
+.teacher-body .v9-case-card h1,
+.teacher-body .v9-case-card h2,
+.teacher-body .v9-case-card h3,
+.teacher-body .v9-case-card h4,
+.teacher-body .card.panel h1,
+.teacher-body .card.panel h2,
+.teacher-body .card.panel h3{
+  color:#123b6b!important;
+  text-shadow:none!important;
+}
+
+/* ---------- LIENS ---------- */
+.teacher-body a:not(.v8-side-nav a):not(.btn):not(.v8-new-live){
+  color:#0a67cb;
+}
+.teacher-body a:not(.v8-side-nav a):not(.btn):not(.v8-new-live):hover{
+  color:#084f9b;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:900px){
+  .teacher-body .revision-card h3,
+  .teacher-body .v9-case-card h3{
+    font-size:16px!important;
+  }
+  .teacher-body select,
+  .teacher-body input{
+    font-size:12px!important;
+  }
+}
+
+/* ---------- REDUCED MOTION : GARDER LES ANIMATIONS ---------- */
+@media (prefers-reduced-motion:reduce){
+  .home-v8.v124-keynote .v124-aurora i,
+  .home-v8.v124-keynote .v124-screen-glow,
+  .home-v8.v124-keynote .v124-chart i,
+  .home-v8.v124-keynote .v124-proj-bottom i,
+  .home-v8.v124-keynote .v124-hero-chips i,
+  .home-v8.v124-keynote .v122-ribbon-beam,
+  .home-v8.v124-keynote .v122-track-a,
+  .home-v8.v124-keynote .v122-track-b{
+    animation-play-state:running!important;
+    animation-iteration-count:infinite!important;
+  }
+}
