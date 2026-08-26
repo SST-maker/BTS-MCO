@@ -1,5 +1,5 @@
-const CACHE='mco-quiz-v12-7-contrast-lock';
-const RUNTIME='mco-quiz-v12-7-runtime';
+const CACHE='mco-quiz-v12-8-mobile-contrast';
+const RUNTIME='mco-quiz-v12-8-runtime';
 const ASSETS=[
   './','./index.html','./offline.html','./teacher.html','./teacher.js','./students.html','./students.js','./progression.html','./progression.js',
   './pedagogy.html','./pedagogy.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
