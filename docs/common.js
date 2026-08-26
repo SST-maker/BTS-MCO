@@ -133,13 +133,16 @@ function closeCommandPalette(){document.querySelector('#commandPalette')?.remove
 // ============================================================
 function v125TrimFinalDotsFromNode(el){
   if(!el) return;
+  const isHeading=/^H[1-6]$/.test(el.tagName||'');
   const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
   let node,last=null;
   while((node=walker.nextNode())) {
-    if(node.nodeValue && node.nodeValue.trim()) last=node;
+    if(node.nodeValue && node.nodeValue.trim()){
+      if(isHeading) node.nodeValue=node.nodeValue.replace(/\./g,'');
+      last=node;
+    }
   }
-  if(!last) return;
-  last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
+  if(!isHeading && last) last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
 }
 
 function v125CleanHeadingPunctuation(root=document){

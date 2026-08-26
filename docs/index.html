@@ -131,7 +131,7 @@
     </div>
   </div>
 </section>
-<section class="v8-home-workflow" id="workflow"><div class="v8-workflow-head"><span>UNE EXPÉRIENCE CONTINUE</span><h2>Le professeur pilote.<br>L’élève avance.</h2></div><div class="v8-workflow-grid"><article class="big"><span>01</span><h3>Un live qui ressemble à un vrai produit.</h3><p>QR code, projection dédiée, réponse privée côté professeur, télécommande et classement en temps réel.</p><div class="v8-mini-live"><div><i></i>LIVE</div><strong>CQ98F</strong><small>34 connectés</small></div></article><article><span>02</span><h3>Un espace élève qui donne envie d’ouvrir l’app.</h3><p>Leçon suivante, progression, fiches et avatar au même endroit.</p></article><article><span>03</span><h3>Le pilotage utile, pas un tableau de chiffres.</h3><p>Repère ce qui coince et les élèves qui ont besoin de toi.</p></article><article><span>04</span><h3>Réviser l’essentiel.</h3><p>Définitions, méthodes, formules et pièges BTS accessibles au bon moment.</p></article></div></section></main><footer class="v8-home-footer"><a class="v8-home-brand" href="./index.html"><img src="./assets/icons/icon-64.png" alt=""><span><b>NCR Solutions BTS MCO</b><small>Parler vrai, former juste.</small></span></a><span>MCO Quiz Arena • 2026</span></footer></div><script type="module" src="./native-ux.js"></script><script type="module" src="./adaptive-ux.js"></script>
+<section class="v8-home-workflow" id="workflow"><div class="v8-workflow-head"><span>UNE EXPÉRIENCE CONTINUE</span><h2>Le professeur pilote<br>L’élève avance</h2></div><div class="v8-workflow-grid"><article class="big"><span>01</span><h3>Un live qui ressemble à un vrai produit.</h3><p>QR code, projection dédiée, réponse privée côté professeur, télécommande et classement en temps réel.</p><div class="v8-mini-live"><div><i></i>LIVE</div><strong>CQ98F</strong><small>34 connectés</small></div></article><article><span>02</span><h3>Un espace élève qui donne envie d’ouvrir l’app.</h3><p>Leçon suivante, progression, fiches et avatar au même endroit.</p></article><article><span>03</span><h3>Le pilotage utile, pas un tableau de chiffres.</h3><p>Repère ce qui coince et les élèves qui ont besoin de toi.</p></article><article><span>04</span><h3>Réviser l’essentiel.</h3><p>Définitions, méthodes, formules et pièges BTS accessibles au bon moment.</p></article></div></section></main><footer class="v8-home-footer"><a class="v8-home-brand" href="./index.html"><img src="./assets/icons/icon-64.png" alt=""><span><b>NCR Solutions BTS MCO</b><small>Parler vrai, former juste.</small></span></a><span>MCO Quiz Arena • 2026</span></footer></div><script type="module" src="./native-ux.js"></script><script type="module" src="./adaptive-ux.js"></script>
 <script>
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -358,10 +358,16 @@
 <script>
 (() => {
   const trim=(el)=>{
+    const heading=/^H[1-6]$/.test(el.tagName||'');
     const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
     let n,last=null;
-    while((n=w.nextNode())) if(n.nodeValue&&n.nodeValue.trim()) last=n;
-    if(last) last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
+    while((n=w.nextNode())){
+      if(n.nodeValue&&n.nodeValue.trim()){
+        if(heading) n.nodeValue=n.nodeValue.replace(/\./g,'');
+        last=n;
+      }
+    }
+    if(!heading&&last) last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
   };
   const clean=()=>document.querySelectorAll(
     'h1,h2,h3,h4,h5,h6,.v8-home-hero-copy>p,.v124-experience-head p,.v124-scene-copy p'

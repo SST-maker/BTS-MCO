@@ -3600,3 +3600,416 @@ input::placeholder, textarea::placeholder{
     animation-iteration-count:infinite!important;
   }
 }
+
+
+/* ============================================================
+   V12.7 — CONTRAST LOCK
+   Verrouillage lisibilité Home + Professeur + Élève
+   ============================================================ */
+
+/* ========== HOME / HEADER ========== */
+.home-v8.v124-keynote .v8-home-nav nav > a.v8-home-login,
+.home-v8.v124-keynote .v8-home-nav nav > a.v8-home-login *,
+.home-v8.v124-keynote .v8-home-login,
+.home-v8.v124-keynote .v8-home-login *{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.home-v8.v124-keynote .v8-home-nav nav > a.v8-home-login{
+  background:linear-gradient(135deg,#0b5db5 0%,#072e64 100%)!important;
+  border:1px solid #0b4f98!important;
+  box-shadow:0 12px 28px rgba(4,43,94,.22)!important;
+}
+.home-v8.v124-keynote .v8-home-nav nav > a.v8-home-login:hover{
+  background:linear-gradient(135deg,#0d6bc9 0%,#08366f 100%)!important;
+}
+
+/* Titre "Le professeur pilote / L’élève avance" */
+.home-v8.v124-keynote .v8-home-workflow .v8-workflow-head h2,
+.home-v8.v124-keynote .v8-workflow-head h2{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  opacity:1!important;
+  text-shadow:0 4px 24px rgba(0,0,0,.20)!important;
+}
+.home-v8.v124-keynote .v8-home-workflow .v8-workflow-head > span,
+.home-v8.v124-keynote .v8-workflow-head > span{
+  color:#73baff!important;
+  -webkit-text-fill-color:#73baff!important;
+  opacity:1!important;
+}
+
+/* Cartes workflow claires : forcer encre sombre */
+.home-v8.v124-keynote .v8-workflow-grid article{
+  color:#123a68!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article > span{
+  color:#3976b8!important;
+  -webkit-text-fill-color:#3976b8!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article h3{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-workflow-grid article p{
+  color:#4f6e90!important;
+  -webkit-text-fill-color:#4f6e90!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-mini-live{
+  background:linear-gradient(135deg,#163f6e,#0b2d57)!important;
+}
+.home-v8.v124-keynote .v8-mini-live,
+.home-v8.v124-keynote .v8-mini-live *,
+.home-v8.v124-keynote .v8-mini-live strong,
+.home-v8.v124-keynote .v8-mini-live small{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  opacity:1!important;
+}
+
+/* ========== PROFESSEUR / DASHBOARD ========== */
+.teacher-body .v11-today-header h1,
+.teacher-body .v11-teacher-today .v11-today-header h1{
+  color:#0b315f!important;
+  -webkit-text-fill-color:#0b315f!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.teacher-body .v11-today-header p,
+.teacher-body .v11-teacher-today .v11-today-header p{
+  color:#4e6f93!important;
+  -webkit-text-fill-color:#4e6f93!important;
+  opacity:1!important;
+}
+.teacher-body .v11-today-header .v11-eyebrow{
+  color:#4a6e94!important;
+  -webkit-text-fill-color:#4a6e94!important;
+  opacity:1!important;
+}
+.teacher-body .v11-today-actions .btn.primary,
+.teacher-body .v11-today-actions .btn.primary *{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+.teacher-body .v11-today-actions .btn.soft,
+.teacher-body .v11-today-actions .btn.soft *{
+  color:#173f70!important;
+  -webkit-text-fill-color:#173f70!important;
+}
+
+/* ========== ESPACE ÉLÈVE : TOKENS ========== */
+.student-body{
+  --mco-ink:#0b315f!important;
+  --mco-text:#173f70!important;
+  --mco-muted:#567393!important;
+  --mco-blue:#0b67c8!important;
+  color:#173f70!important;
+}
+
+/* Topbar élève */
+.student-body .v8-student-topbar{
+  background:rgba(250,253,255,.96)!important;
+  border-bottom-color:#d5e2ef!important;
+}
+.student-body .v8-student-brand b{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .v8-student-brand small{
+  color:#5f7898!important;
+  -webkit-text-fill-color:#5f7898!important;
+}
+.student-body .v8-student-nav{
+  background:#edf3f9!important;
+  border-color:#d8e3ef!important;
+}
+.student-body .v8-student-nav a,
+.student-body .v8-student-nav a span,
+.student-body .v8-student-nav a .ui-icon{
+  color:#496988!important;
+  -webkit-text-fill-color:#496988!important;
+  opacity:1!important;
+}
+.student-body .v8-student-nav a.active,
+.student-body .v8-student-nav a.active span,
+.student-body .v8-student-nav a.active .ui-icon{
+  color:#0b4f91!important;
+  -webkit-text-fill-color:#0b4f91!important;
+  opacity:1!important;
+}
+.student-body .v8-profile-chip,
+.student-body .v8-profile-chip *{
+  color:#173f70!important;
+  -webkit-text-fill-color:#173f70!important;
+  opacity:1!important;
+}
+.student-body .v8-student-logout,
+.student-body .v8-student-logout *{
+  color:#456786!important;
+  -webkit-text-fill-color:#456786!important;
+}
+
+/* Hero élève sombre */
+.student-body .v11-student-stage,
+.student-body .v8-student-hero{
+  color:#ffffff!important;
+}
+.student-body .v11-student-stage h1,
+.student-body .v11-student-stage h2,
+.student-body .v11-student-stage h3,
+.student-body .v11-student-stage strong,
+.student-body .v8-student-hero h1,
+.student-body .v8-student-hero h2,
+.student-body .v8-student-hero h3,
+.student-body .v8-student-hero strong{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  opacity:1!important;
+}
+.student-body .v11-student-stage p,
+.student-body .v11-student-stage small,
+.student-body .v11-student-stage .v11-student-progress > span,
+.student-body .v8-student-hero p,
+.student-body .v8-student-hero small{
+  color:#d4e4f7!important;
+  -webkit-text-fill-color:#d4e4f7!important;
+  opacity:1!important;
+}
+.student-body .v11-student-stage .v11-eyebrow,
+.student-body .v8-student-hero .eyebrow{
+  color:#9dd0ff!important;
+  -webkit-text-fill-color:#9dd0ff!important;
+}
+.student-body .v11-student-stage .btn.primary,
+.student-body .v11-student-stage .btn.primary *,
+.student-body .v8-student-hero .btn.primary,
+.student-body .v8-student-hero .btn.primary *{
+  color:#0b315f!important;
+  -webkit-text-fill-color:#0b315f!important;
+  background:#ffffff!important;
+}
+.student-body .v11-student-stage .btn.soft,
+.student-body .v11-student-stage .btn.soft *,
+.student-body .v8-student-hero .btn.soft,
+.student-body .v8-student-hero .btn.soft *{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+
+/* Carte "continuer" */
+.student-body .v11-current-card{
+  background:#ffffff!important;
+  border-color:#d5e2ef!important;
+}
+.student-body .v11-current-card h2,
+.student-body .v11-current-card h3,
+.student-body .v11-current-card strong{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+  opacity:1!important;
+}
+.student-body .v11-current-card p,
+.student-body .v11-current-card small,
+.student-body .v11-current-end span{
+  color:#567393!important;
+  -webkit-text-fill-color:#567393!important;
+  opacity:1!important;
+}
+
+/* Carte révision rapide */
+.student-body .v11-student-quick{
+  background:linear-gradient(150deg,#fff4c9,#fffaf0)!important;
+  border-color:#e3c96e!important;
+}
+.student-body .v11-student-quick .v11-eyebrow{
+  color:#6f5200!important;
+  -webkit-text-fill-color:#6f5200!important;
+}
+.student-body .v11-student-quick h3,
+.student-body .v11-student-quick strong{
+  color:#4f3c00!important;
+  -webkit-text-fill-color:#4f3c00!important;
+}
+.student-body .v11-student-quick p{
+  color:#665119!important;
+  -webkit-text-fill-color:#665119!important;
+}
+.student-body .v11-student-quick a,
+.student-body .v11-student-quick a *{
+  color:#5b4300!important;
+  -webkit-text-fill-color:#5b4300!important;
+}
+
+/* Parcours + recherche + filtres */
+.student-body .v11-program-head h2,
+.student-body .student-section h2,
+.student-body .section-head h2{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .v11-program-head p,
+.student-body .student-section p,
+.student-body .section-head p{
+  color:#567393!important;
+  -webkit-text-fill-color:#567393!important;
+}
+.student-body .v11-lesson-search,
+.student-body .student-filters select,
+.student-body .v11-program-tools select{
+  background:#ffffff!important;
+  border-color:#ccdbea!important;
+}
+.student-body .v11-lesson-search input,
+.student-body .student-filters select,
+.student-body .v11-program-tools select{
+  color:#173f70!important;
+  -webkit-text-fill-color:#173f70!important;
+  opacity:1!important;
+}
+
+/* Lignes de leçons */
+.student-body .v8-lesson-row,
+.student-body .v8-lesson-row *{
+  opacity:1!important;
+}
+.student-body .v8-lesson-main h3{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .v8-lesson-main p,
+.student-body .v8-lesson-meta,
+.student-body .v8-state{
+  color:#587492!important;
+  -webkit-text-fill-color:#587492!important;
+}
+.student-body .v8-lesson-end strong,
+.student-body .v8-lesson-index{
+  color:#174f8a!important;
+  -webkit-text-fill-color:#174f8a!important;
+}
+
+/* Fiches de révision élève */
+.student-body .student-hero{
+  background:linear-gradient(135deg,#082957,#0d55a6)!important;
+  color:#ffffff!important;
+}
+.student-body .student-hero h1,
+.student-body .student-hero h1 span,
+.student-body .student-hero strong{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+.student-body .student-hero p,
+.student-body .student-hero .eyebrow,
+.student-body .revision-hero-stat span{
+  color:#d5e6f8!important;
+  -webkit-text-fill-color:#d5e6f8!important;
+}
+.student-body .student-revision-grid .revision-card,
+.student-body .revision-card.student-card{
+  background:#ffffff!important;
+  border-color:#d5e2ef!important;
+}
+.student-body .student-revision-grid .revision-card h3,
+.student-body .revision-card.student-card h3{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .student-revision-grid .revision-card p,
+.student-body .revision-card.student-card p,
+.student-body .student-revision-grid .revision-card small,
+.student-body .revision-card.student-card small{
+  color:#567393!important;
+  -webkit-text-fill-color:#567393!important;
+}
+.student-body .student-revision-grid .revision-card-foot span,
+.student-body .student-revision-grid .revision-card-foot b{
+  color:#0b5faa!important;
+  -webkit-text-fill-color:#0b5faa!important;
+}
+.student-body .chapter-sheet-card{
+  background:#ffffff!important;
+  border-color:#d5e2ef!important;
+}
+.student-body .chapter-sheet-card b{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .chapter-sheet-card small{
+  color:#0b67c8!important;
+  -webkit-text-fill-color:#0b67c8!important;
+}
+
+/* Avatar studio */
+.student-body .avatar-page-head h1,
+.student-body .avatar-controls-head h2,
+.student-body .profile-preview-meta h2{
+  color:#123a68!important;
+  -webkit-text-fill-color:#123a68!important;
+}
+.student-body .avatar-page-head p,
+.student-body .profile-preview-meta p,
+.student-body .avatar-tip-card,
+.student-body .avatar-tip-card p,
+.student-body .avatar-option-head,
+.student-body .avatar-studio-footer{
+  color:#567393!important;
+  -webkit-text-fill-color:#567393!important;
+}
+.student-body .avatar-option{
+  color:#173f70!important;
+  -webkit-text-fill-color:#173f70!important;
+  background:#ffffff!important;
+  border-color:#d5e2ef!important;
+}
+.student-body .avatar-option.active,
+.student-body .avatar-option.selected{
+  color:#0b59aa!important;
+  -webkit-text-fill-color:#0b59aa!important;
+  background:#eaf4ff!important;
+  border-color:#8dbbea!important;
+}
+
+/* Dock mobile élève */
+.student-body .v8-student-dock a,
+.student-body .v8-student-dock a span,
+.student-body .v8-student-dock a .ui-icon{
+  color:#c7dcf5!important;
+  -webkit-text-fill-color:#c7dcf5!important;
+  opacity:1!important;
+}
+.student-body .v8-student-dock a.active,
+.student-body .v8-student-dock a.active span,
+.student-body .v8-student-dock a.active .ui-icon{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+
+/* ========== WEBKIT / SAFARI CONTRAST SAFETY ========== */
+.teacher-body h1,
+.teacher-body h2,
+.teacher-body h3,
+.student-body h1,
+.student-body h2,
+.student-body h3{
+  opacity:1!important;
+}
+
+/* ========== REDUCED MOTION : animations restent actives ========== */
+@media (prefers-reduced-motion:reduce){
+  .home-v8.v124-keynote .v124-aurora i,
+  .home-v8.v124-keynote .v124-screen-glow,
+  .home-v8.v124-keynote .v124-chart i,
+  .home-v8.v124-keynote .v124-proj-bottom i,
+  .home-v8.v124-keynote .v124-hero-chips i,
+  .home-v8.v124-keynote .v122-ribbon-beam,
+  .home-v8.v124-keynote .v122-track-a,
+  .home-v8.v124-keynote .v122-track-b{
+    animation-play-state:running!important;
+    animation-iteration-count:infinite!important;
+  }
+}
