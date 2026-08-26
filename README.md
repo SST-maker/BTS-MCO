@@ -1,7 +1,7 @@
 # MCO Quiz Arena V5 — GitHub Pages + Supabase
 
 Version prête à être installée **manuellement** par toi, sans plugin ni connexion ChatGPT.
-
+ 
 ## Ce que contient le pack
 
 - `docs/` : application statique à publier avec **GitHub Pages**.
