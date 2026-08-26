@@ -2935,3 +2935,263 @@ input::placeholder, textarea::placeholder{
     grid-template-columns:86px 1fr;
   }
 }
+
+
+/* ============================================================
+   V12.5 — CONTRASTE RENFORCÉ + LISIBILITÉ
+   ============================================================ */
+
+/* ---------- Navigation / boutons accueil ---------- */
+.home-v8.v124-keynote .v8-home-nav{
+  background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(244,249,255,.93))!important;
+}
+.home-v8.v124-keynote .v8-home-brand b{
+  color:#082f62!important;
+}
+.home-v8.v124-keynote .v8-home-brand small{
+  color:#4f6e94!important;
+}
+.home-v8.v124-keynote .v8-home-nav nav>a{
+  color:#154978!important;
+}
+.home-v8.v124-keynote .v8-home-login,
+.home-v8.v124-keynote a.v8-home-login{
+  color:#ffffff!important;
+  background:linear-gradient(135deg,#0f65bf,#082e64)!important;
+  text-shadow:none!important;
+}
+.home-v8.v124-keynote .v8-home-nav nav>a[href="./student-login.html"]{
+  color:#0b4f91!important;
+  background:#ffffff!important;
+  border-color:#c9dbee!important;
+}
+
+/* ---------- Hero sombre : texte clair obligatoire ---------- */
+.home-v8.v124-keynote .v8-home-hero h1{
+  color:#f7fbff!important;
+  text-shadow:0 12px 38px rgba(0,0,0,.16)!important;
+}
+.home-v8.v124-keynote .v8-home-hero h1 em{
+  color:#62b7ff!important;
+}
+.home-v8.v124-keynote .v8-home-hero-copy>p{
+  color:#c8d9ed!important;
+}
+.home-v8.v124-keynote .v8-home-eyebrow{
+  color:#0d4f8e!important;
+  background:rgba(255,255,255,.93)!important;
+}
+.home-v8.v124-keynote .v8-home-primary{
+  color:#0b2f5d!important;
+  background:#ffffff!important;
+  border-color:#ffffff!important;
+}
+.home-v8.v124-keynote .v8-home-secondary{
+  color:#153f70!important;
+  background:rgba(255,255,255,.86)!important;
+  border-color:rgba(255,255,255,.55)!important;
+}
+
+/* ---------- Démo produit blanche : texte sombre ---------- */
+.home-v8.v124-keynote .v8-app-window{
+  color:#0a2f5f!important;
+}
+.home-v8.v124-keynote .v8-window-brand b,
+.home-v8.v124-keynote .v8-window-brand small,
+.home-v8.v124-keynote .v8-demo-meta span,
+.home-v8.v124-keynote .v8-demo-meta strong,
+.home-v8.v124-keynote .v8-window-body h3,
+.home-v8.v124-keynote .v8-demo-answers span,
+.home-v8.v124-keynote .v8-demo-progress span{
+  color:#153f70!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v8-window-status{
+  color:#147854!important;
+}
+.home-v8.v124-keynote .v8-demo-answers>div{
+  color:#153f70!important;
+  background:#f6f9fd!important;
+  border-color:#d9e5f3!important;
+}
+.home-v8.v124-keynote .v8-demo-answers>div.good{
+  background:#e7f8f1!important;
+  border-color:#8ad9bd!important;
+}
+.home-v8.v124-keynote .v8-demo-answers>div.good b,
+.home-v8.v124-keynote .v8-demo-answers>div.good span{
+  color:#0f654b!important;
+}
+.home-v8.v124-keynote .v8-float-card,
+.home-v8.v124-keynote .v8-float-card b,
+.home-v8.v124-keynote .v8-float-card small{
+  color:#173e70!important;
+  opacity:1!important;
+}
+.home-v8.v124-keynote .v124-signature-card>strong{
+  color:#0b3b74!important;
+}
+.home-v8.v124-keynote .v124-signature-card>p,
+.home-v8.v124-keynote .v124-signature-meters b{
+  color:#496b91!important;
+}
+
+/* ---------- Pages professeur : titres clairs sur fond clair ---------- */
+.dashboard-head h1,
+.v8-page-head h1,
+.v9-page-head h1,
+.v11-today-intro h1{
+  color:#0b315f!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.dashboard-head p,
+.v8-page-head p,
+.v9-page-head p,
+.v11-today-intro p{
+  color:#4c6d92!important;
+  opacity:1!important;
+}
+.dashboard-head .section-kicker,
+.v8-page-head .section-kicker,
+.v9-page-head .eyebrow,
+.v11-today-intro .v11-eyebrow,
+.v11-eyebrow{
+  color:#3f6d9d!important;
+  opacity:1!important;
+}
+
+/* ---------- Dashboard : cartes claires ---------- */
+.v11-signal-panel{
+  background:linear-gradient(180deg,#ffffff,#f7fbff)!important;
+  border-color:#d7e4f1!important;
+}
+.v11-signal-panel h3,
+.v11-section-head h3,
+.v11-create-intro h2,
+.v11-activity-section h3,
+.v11-actions-section h3{
+  color:#123b6d!important;
+  opacity:1!important;
+}
+.v11-signal-panel .v11-eyebrow,
+.v11-section-head .v11-eyebrow{
+  color:#48729e!important;
+}
+.v11-signal strong{
+  color:#1668b7!important;
+  opacity:1!important;
+}
+.v11-signal span,
+.v11-next-hint{
+  color:#607c9d!important;
+  opacity:1!important;
+}
+
+/* ---------- Dashboard : grande carte sombre ---------- */
+.v11-next-action{
+  color:#ffffff!important;
+}
+.v11-next-action h2{
+  color:#ffffff!important;
+  opacity:1!important;
+}
+.v11-next-action p,
+.v11-next-action .v11-next-hint,
+.v11-next-action .v11-eyebrow{
+  color:#c9dbef!important;
+  opacity:1!important;
+}
+.v11-next-action .v11-live-status,
+.v11-next-action code{
+  color:#dcecff!important;
+}
+.v11-next-action .btn.glass{
+  color:#ffffff!important;
+  border-color:rgba(255,255,255,.22)!important;
+  background:rgba(255,255,255,.10)!important;
+}
+.v11-next-action .btn.gold{
+  color:#2b2300!important;
+}
+
+/* ---------- Cas pratiques ---------- */
+.v9-page-head h1{
+  color:#0b315f!important;
+}
+.v9-page-head p{
+  color:#4d6d90!important;
+}
+.v9-case-toolbar label{
+  color:#5a7697!important;
+}
+.v9-case-toolbar select,
+.v9-case-toolbar input{
+  color:#244a76!important;
+  background:#ffffff!important;
+  border-color:#d9e5f2!important;
+  opacity:1!important;
+}
+.v9-case-toolbar select option{
+  color:#173f70!important;
+}
+.v9-case-card,
+.v9-case-card *{
+  opacity:1;
+}
+.v9-case-card h3,
+.v9-case-card h2,
+.v9-case-card strong,
+.v9-case-card b{
+  color:#173f70!important;
+}
+.v9-case-card p,
+.v9-case-card small,
+.v9-case-card span{
+  color:#5e7899!important;
+}
+.v9-case-card a,
+.v9-case-card button{
+  color:#0d6bd0!important;
+}
+
+/* ---------- Surfaces claires générales ---------- */
+.v8-surface h1,
+.v8-surface h2,
+.v8-surface h3,
+.v9-case-paper h1,
+.v9-case-paper h2,
+.v9-case-paper h3{
+  color:#123b6b!important;
+}
+.v8-surface p,
+.v9-case-paper p{
+  color:#4f6f92!important;
+}
+
+/* ---------- Accessibilité contrastes ---------- */
+::placeholder{
+  color:#8aa0b8!important;
+  opacity:1!important;
+}
+
+/* Les animations V12.4 restent actives.
+   Réduire les animations = mouvements plus doux, jamais supprimés. */
+@media (prefers-reduced-motion:reduce){
+  .home-v8.v124-keynote .v124-aurora i{
+    animation-duration:18s!important;
+    animation-iteration-count:infinite!important;
+  }
+  .home-v8.v124-keynote .v124-screen-glow{
+    animation-duration:12s!important;
+    animation-iteration-count:infinite!important;
+  }
+  .home-v8.v124-keynote .v124-chart i{
+    animation-duration:5s!important;
+    animation-iteration-count:infinite!important;
+  }
+  .home-v8.v124-keynote .v124-proj-bottom i{
+    animation-duration:3s!important;
+    animation-iteration-count:infinite!important;
+  }
+}

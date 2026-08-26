@@ -124,3 +124,62 @@ function openCommandPalette(){
 }
 function closeCommandPalette(){document.querySelector('#commandPalette')?.remove()}
 
+
+
+// ============================================================
+// V12.5 — Nettoyage typographique global
+// Retire uniquement les points finaux des titres / sous-titres,
+// sans casser le HTML interne ni les autres ponctuations.
+// ============================================================
+function v125TrimFinalDotsFromNode(el){
+  if(!el) return;
+  const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+  let node,last=null;
+  while((node=walker.nextNode())) {
+    if(node.nodeValue && node.nodeValue.trim()) last=node;
+  }
+  if(!last) return;
+  last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
+}
+
+function v125CleanHeadingPunctuation(root=document){
+  const selectors=[
+    'h1','h2','h3','h4','h5','h6',
+    '.dashboard-head p',
+    '.v8-page-head p',
+    '.v9-page-head p',
+    '.v11-today-intro p',
+    '.v11-next-main p',
+    '.v11-create-intro p',
+    '.v8-home-hero-copy > p',
+    '.v124-experience-head p',
+    '.v124-scene-copy p'
+  ];
+  root.querySelectorAll?.(selectors.join(',')).forEach(v125TrimFinalDotsFromNode);
+}
+
+function v125InstallTypographyObserver(){
+  v125CleanHeadingPunctuation(document);
+  const target=document.body||document.documentElement;
+  if(!target||target.__v125Observer) return;
+  target.__v125Observer=true;
+  const observer=new MutationObserver((mutations)=>{
+    for(const m of mutations){
+      for(const n of m.addedNodes){
+        if(n.nodeType===1){
+          v125CleanHeadingPunctuation(n);
+          if(n.matches?.('h1,h2,h3,h4,h5,h6,.dashboard-head p,.v8-page-head p,.v9-page-head p,.v11-today-intro p,.v11-next-main p,.v11-create-intro p')) {
+            v125TrimFinalDotsFromNode(n);
+          }
+        }
+      }
+    }
+  });
+  observer.observe(target,{childList:true,subtree:true});
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',v125InstallTypographyObserver,{once:true});
+}else{
+  v125InstallTypographyObserver();
+}

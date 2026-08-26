@@ -354,4 +354,19 @@
     reveal.forEach(el => el.classList.add('is-visible'));
   }
 })();
+</script>
+<script>
+(() => {
+  const trim=(el)=>{
+    const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+    let n,last=null;
+    while((n=w.nextNode())) if(n.nodeValue&&n.nodeValue.trim()) last=n;
+    if(last) last.nodeValue=last.nodeValue.replace(/\s*\.+\s*$/u,'');
+  };
+  const clean=()=>document.querySelectorAll(
+    'h1,h2,h3,h4,h5,h6,.v8-home-hero-copy>p,.v124-experience-head p,.v124-scene-copy p'
+  ).forEach(trim);
+  clean();
+  new MutationObserver(clean).observe(document.body,{childList:true,subtree:true});
+})();
 </script></body></html>
