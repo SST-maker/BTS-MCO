@@ -44,6 +44,7 @@ const teacherNav=[
   ['dashboard','./teacher.html','home','Dashboard','Vue d’ensemble'],
   ['students','./students.html','users','Élèves & accès','Comptes et suivi'],
   ['progression','./progression.html','progression','Progression classes','Ouvrir les leçons'],
+  ['portals','./class-portals.html','qr','QR permanents','Portails de classe'],
   ['pedagogy','./pedagogy.html','insight','Pilotage pédagogique','Analyser la classe'],
   ['buzzer','./buzzer.html','live','Buzzer oral','Interroger la classe'],
   ['cases','./cases.html','case','Cas pratiques','Classe, maison, PDF'],
