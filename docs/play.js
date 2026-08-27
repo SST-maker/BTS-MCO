@@ -1,6 +1,7 @@
 import { rpc, isConfigured, liveChannel } from './supabase-client.js';
 import { $, qs, playerLoad, esc, toast, uiIcon, modeLabel } from './common.js';
 import { avatarMarkup } from './avatar.js';
+import { playerInputHtml, bindPlayerInput, hasPlayerResponse, correctionResponseHtml, mediaHtml } from './question-ui.js';
 
 const root=$('#root');
 const code=(qs('code')||'').toUpperCase();
@@ -32,7 +33,7 @@ function lobby(){
 function startTimer(){
   clearInterval(timer);if(session.mode==='revision')return;
   let left=session.secondsRemaining??session.settings.timerSeconds;const el=$('#playerTimer');
-  timer=setInterval(()=>{left--;if(el)el.textContent=Math.max(0,left)+'s';if(left<=0){clearInterval(timer);document.querySelectorAll('[data-answer]').forEach(b=>b.disabled=true)}},1000);
+  timer=setInterval(()=>{left--;if(el)el.textContent=Math.max(0,left)+'s';if(left<=0){clearInterval(timer);document.querySelectorAll('.response-control').forEach(b=>b.disabled=true)}},1000);
 }
 function statusStrip(){
   if(session.mode==='battle'){const t=myTeam();return `<div class="player-mode-strip battle"><span>Équipe ${esc(session.player?.team||'—')}</span><strong>${Number(t?.score||0).toLocaleString('fr-FR')} pts</strong></div>`}
@@ -42,17 +43,17 @@ function statusStrip(){
   return `<div class="player-mode-strip class"><span>Score <b>${session.player?.score||0} pts</b></span><span>Série <b>${session.player?.streak||0}</b></span></div>`;
 }
 function question(){
-  questionShownAt=Date.now();const q=session.question,answered=session.player?.answer!=null,m=mcopy();
+  questionShownAt=Date.now();const q=session.question,answered=hasPlayerResponse(session.player),m=mcopy();
   const timerHtml=session.mode==='revision'?`<div class="player-timer no-timer">∞</div>`:`<div class="player-timer" id="playerTimer">${session.secondsRemaining??session.settings.timerSeconds}s</div>`;
-  shell(`<div class="player-live-shell mode-player-${session.mode}">${liveHeader(`${q.subject} • ${q.chapter}`,`${m.tag} • QUESTION ${session.currentIndex+1}/${session.totalQuestions}`)}<main class="player-question-v7"><div class="player-question-progress"><i style="width:${(session.currentIndex+1)/session.totalQuestions*100}%"></i></div>${statusStrip()}<div class="player-question-headline"><div class="player-question-index">LEÇON ${esc(q.lesson)} • QUESTION ${session.currentIndex+1}</div>${timerHtml}</div><h1>${esc(q.prompt)}</h1><div class="answer-grid player-answer-grid">${q.choices.map((a,i)=>`<button class="answer-card ans${i}" data-answer="${i}" ${answered?'disabled':''}><div class="letter">${String.fromCharCode(65+i)}</div><div>${esc(a)}</div></button>`).join('')}</div><div id="sent" class="player-sent ${answered?'':'hidden'}">${uiIcon('spark')}<span>${session.mode==='bts'?'Réponse enregistrée. La correction arrivera à la fin.':'Réponse envoyée. Attends la suite.'}</span></div>${session.mode==='revision'?'<div class="player-no-pressure">Aucun bonus de vitesse • prends le temps de réfléchir</div>':''}</main></div>`);
-  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>sendAnswer(Number(b.dataset.answer)));startTimer();
+  shell(`<div class="player-live-shell mode-player-${session.mode}">${liveHeader(`${q.subject} • ${q.chapter}`,`${m.tag} • QUESTION ${session.currentIndex+1}/${session.totalQuestions}`)}<main class="player-question-v7"><div class="player-question-progress"><i style="width:${(session.currentIndex+1)/session.totalQuestions*100}%"></i></div>${statusStrip()}<div class="player-question-headline"><div class="player-question-index">LEÇON ${esc(q.lesson)} • QUESTION ${session.currentIndex+1}</div>${timerHtml}</div><h1>${esc(q.prompt)}</h1>${mediaHtml(q,'player')}${playerInputHtml(q,{answered,response:session.player?.response})}<div id="sent" class="player-sent ${answered?'':'hidden'}">${uiIcon('spark')}<span>${session.mode==='bts'?'Réponse enregistrée. La correction arrivera à la fin.':'Réponse envoyée. Attends la suite.'}</span></div>${session.mode==='revision'?'<div class="player-no-pressure">Aucun bonus de vitesse • prends le temps de réfléchir</div>':''}</main></div>`);
+  bindPlayerInput(document,payload=>sendResponse(payload));startTimer();
 }
 function reveal(){
-  clearInterval(timer);const q=session.question,mine=session.player?.answer,ok=mine===session.correctAnswer,m=mcopy();let special='';
+  clearInterval(timer);const q=session.question,ok=session.player?.correct===true,m=mcopy();let special='';
   if(session.mode==='battle')special=teamBoard();
   else if(session.mode==='duel'){const win=session.duel?.roundWinnerName;special=`<div class="duel-round-student ${win===session.player?.name?'won':win?'lost':'tie'}"><span>${win?`${esc(win)} remporte la manche`:'Manche nulle'}</span>${statusStrip()}</div>`}
   else if(session.mode==='revision'){const total=Number(session.currentStats?.correct||0)+Number(session.currentStats?.wrong||0),pct=total?Math.round(Number(session.currentStats.correct)/total*100):0;special=`<div class="revision-class-pulse"><strong>${pct}%</strong><span>de la classe a trouvé la bonne réponse</span></div>`}
-  shell(`<div class="player-live-shell mode-player-${session.mode}">${liveHeader('Correction',`${m.tag} • ${q.subject} • ${q.chapter}`)}<main class="player-question-v7 player-correction-v7"><div class="player-result-banner ${ok?'success':'retry'}"><span>${ok?'✓':'↻'}</span><div><small>${ok?'BONNE RÉPONSE':'À RETENIR'}</small><h2>${ok?'Bien joué !':'Regarde surtout pourquoi.'}</h2></div></div>${special}<div class="player-question-index">QUESTION ${session.currentIndex+1}</div><h1>${esc(q.prompt)}</h1><div class="answer-grid player-answer-grid">${q.choices.map((a,i)=>`<div class="answer-card ans${i} ${i===session.correctAnswer?'correct':'dim'}"><div class="letter">${String.fromCharCode(65+i)}</div><div>${esc(a)}</div></div>`).join('')}</div><section class="player-explanation"><span>EXPLICATION</span><p>${esc(session.explanation||'')}</p></section><div class="player-footer-stats"><span>${session.mode==='revision'?'Maîtrise':session.mode==='duel'?'Duel':session.mode==='battle'?'Équipe':'Ton score'} <b>${session.mode==='revision'?`${session.player?.correctCount||0}/${session.currentIndex+1}`:session.mode==='duel'?`${session.player?.score||0} manche${session.player?.score>1?'s':''}`:session.mode==='battle'?`${Number(myTeam()?.score||0).toLocaleString('fr-FR')} pts`:`${session.player?.score||0} pts`}</b></span><span>Attends la question suivante…</span></div></main></div>`);
+  shell(`<div class="player-live-shell mode-player-${session.mode}">${liveHeader('Correction',`${m.tag} • ${q.subject} • ${q.chapter}`)}<main class="player-question-v7 player-correction-v7"><div class="player-result-banner ${ok?'success':'retry'}"><span>${ok?'✓':'↻'}</span><div><small>${ok?'BONNE RÉPONSE':'À RETENIR'}</small><h2>${ok?'Bien joué !':'Regarde surtout pourquoi.'}</h2></div></div>${special}<div class="player-question-index">QUESTION ${session.currentIndex+1}</div><h1>${esc(q.prompt)}</h1>${mediaHtml(q,'player')}${correctionResponseHtml(q,session.correctResponse,session.correctAnswer)}<section class="player-explanation"><span>EXPLICATION</span><p>${esc(session.explanation||'')}</p></section><div class="player-footer-stats"><span>${session.mode==='revision'?'Maîtrise':session.mode==='duel'?'Duel':session.mode==='battle'?'Équipe':'Ton score'} <b>${session.mode==='revision'?`${session.player?.correctCount||0}/${session.currentIndex+1}`:session.mode==='duel'?`${session.player?.score||0} manche${session.player?.score>1?'s':''}`:session.mode==='battle'?`${Number(myTeam()?.score||0).toLocaleString('fr-FR')} pts`:`${session.player?.score||0} pts`}</b></span><span>Attends la question suivante…</span></div></main></div>`);
 }
 function standardRanking(){return `<section class="player-final-board"><div class="panel-title-row"><div><span class="section-kicker">CLASSEMENT</span><h3>Top 10</h3></div></div><div class="leaderboard">${(session.leaderboard||[]).slice(0,10).map(r=>`<div class="rank avatar-rank ${r.id===session.player?.id?'is-me':''}"><div class="place">${r.rank}</div>${r.avatar?`<span class="rank-avatar">${avatarMarkup(r.avatar,'avatar-svg avatar-rank-svg',`Avatar de ${r.name}`)}</span>`:''}<b>${esc(r.name)}</b><strong>${r.score}</strong></div>`).join('')}</div></section>`}
 function ended(){
@@ -72,13 +73,13 @@ function ended(){
   shell(`<div class="player-live-shell mode-player-${session.mode}">${liveHeader('MCO Quiz Arena',`${m.tag} • SESSION TERMINÉE`)}<main class="player-ended-v7 mode-ended-player">${body}<div class="player-final-actions"><a class="btn primary" href="./join.html">Rejoindre un autre live</a><a class="btn soft" href="./student.html">Mon espace élève</a></div></main></div>`);
 }
 function render(){if(session.status==='lobby')lobby();else if(session.status==='ended')ended();else if(session.revealed||session.status==='reveal')reveal();else question()}
-async function state(){session=await rpc('mco_session_state',{p_code:code,p_teacher_key:null,p_player_id:auth.playerId,p_player_token:auth.playerToken});return session}
+async function state(){session=await rpc('mco_session_state_v12_9',{p_code:code,p_teacher_key:null,p_player_id:auth.playerId,p_player_token:auth.playerToken});return session}
 async function refresh(){
-  try{await state();const teamKey=(session.teamLeaderboard||[]).map(x=>`${x.team}:${x.score}`).join('|');const key=`${session.status}-${session.currentIndex}-${session.revealed}-${session.player?.answer}-${session.player?.score}-${session.player?.correctCount}-${session.players.length}-${teamKey}-${session.duel?.roundWinnerName||''}`;if(key!==last){last=key;render()}}
+  try{await state();const teamKey=(session.teamLeaderboard||[]).map(x=>`${x.team}:${x.score}`).join('|');const key=`${session.status}-${session.currentIndex}-${session.revealed}-${JSON.stringify(session.player?.response||null)}-${session.player?.score}-${session.player?.correctCount}-${session.players.length}-${teamKey}-${session.duel?.roundWinnerName||''}`;if(key!==last){last=key;render()}}
   catch(e){shell(`<div class="waiting premium-waiting"><div><h1>Connexion perdue</h1><p class="muted">${esc(e.message)}</p><a class="btn primary" href="./join.html">Revenir</a></div></div>`);clearInterval(poller)}
 }
-async function sendAnswer(i){
-  try{document.querySelectorAll('[data-answer]').forEach(b=>b.disabled=true);const elapsed=Math.max(0,Date.now()-questionShownAt);await rpc('mco_submit_answer',{p_code:code,p_player_id:auth.playerId,p_player_token:auth.playerToken,p_answer_index:i,p_elapsed_ms:elapsed});await channel?.broadcast('answer');await refresh()}catch(e){toast(e.message,'bad')}
+async function sendResponse(payload){
+  try{document.querySelectorAll('.response-control').forEach(b=>b.disabled=true);const elapsed=Math.max(0,Date.now()-questionShownAt);await rpc('mco_submit_response',{p_code:code,p_player_id:auth.playerId,p_player_token:auth.playerToken,p_response:payload,p_elapsed_ms:elapsed});await channel?.broadcast('answer');await refresh()}catch(e){toast(e.message,'bad');document.querySelectorAll('.response-control').forEach(b=>b.disabled=false)}
 }
 async function boot(){if(!isConfigured||!code||!auth){location.href='./join.html';return}try{await state();channel=liveChannel(code,refresh);poller=setInterval(refresh,1200);render()}catch{location.href='./join.html'}}
 boot();

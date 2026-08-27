@@ -16,9 +16,9 @@ export const supabase = isConfigured
 
 const CACHEABLE_RPCS=new Set([
   'mco_dashboard','mco_report','mco_teacher_students','mco_teacher_class_list','mco_teacher_class_progression','mco_teacher_lesson_overrides',
-  'mco_teacher_pedagogical_dashboard','mco_teacher_question_bank','mco_teacher_revision_catalog','mco_teacher_revision_sheet','mco_teacher_revision_chapter',
+  'mco_teacher_pedagogical_dashboard','mco_teacher_open_question_bank','mco_teacher_question_bank','mco_teacher_question_bank_v12_9','mco_teacher_revision_catalog','mco_teacher_revision_sheet','mco_teacher_revision_chapter',
   'mco_teacher_case_catalog','mco_teacher_case','mco_student_dashboard','mco_student_lessons','mco_student_lesson','mco_student_revision_catalog',
-  'mco_student_revision_sheet','mco_student_revision_chapter','mco_student_me'
+  'mco_student_open_question_catalog','mco_student_revision_sheet','mco_student_revision_chapter','mco_student_me'
 ]);
 const QUEUEABLE_RPCS=new Set(['mco_student_mark_lesson','mco_student_update_avatar']);
 function rpcCacheKey(name,params){return `${name}:${JSON.stringify(params||{})}`}

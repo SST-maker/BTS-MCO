@@ -47,6 +47,7 @@ const teacherNav=[
   ['pedagogy','./pedagogy.html','insight','Pilotage pédagogique','Analyser la classe'],
   ['cases','./cases.html','case','Cas pratiques','Classe, maison, PDF'],
   ['revisions','./revisions.html','sheet','Fiches de révision','Préparer les révisions'],
+  ['open','./open-questions.html','spark','Questions ouvertes','Calculs & réponses libres'],
   ['bank','./bank.html','bank','Banque de questions','Explorer le contenu']
 ];
 const teacherMeta=Object.fromEntries(teacherNav.map(([k,,ico,label,desc])=>[k,{ico,label,desc}]));
@@ -67,7 +68,7 @@ export function appShell(active='dashboard',profile=null){
 
 export function studentTopbar(student,active='home'){
   queueMicrotask(()=>installStudentUX());
-  const nav=[['home','./student.html','home','Accueil'],['revisions','./student-revisions.html','sheet','Fiches'],['live','./join.html','live','Live'],['profile','./student-profile.html','users','Avatar']];
+  const nav=[['home','./student.html','home','Accueil'],['revisions','./student-revisions.html','sheet','Fiches'],['open','./student-open.html','spark','Ouvertes'],['live','./join.html','live','Live'],['profile','./student-profile.html','users','Avatar']];
   const links=nav.map(([key,href,ico,label])=>`<a class="${active===key?'active':''}" href="${href}">${uiIcon(ico)}<span>${label}</span></a>`).join('');
   return `<header class="student-topbar v8-student-topbar"><a class="student-brand v8-student-brand" href="./student.html"><img src="./assets/icons/icon-64.png" alt=""><span><b>MCO Quiz Arena</b><small>${esc(student?.className||'BTS MCO')}</small></span></a><nav class="student-main-nav v8-student-nav">${links}</nav><div class="student-profile-zone"><button class="native-system-btn" type="button" data-native-center aria-label="Centre de l’application" title="État de l’app">${uiIcon('pulse')}</button><a class="student-mini student-profile-chip v8-profile-chip" href="./student-profile.html" aria-label="Personnaliser mon avatar"><span class="student-mini-avatar">${avatarMarkup(student?.avatar||{},'avatar-svg avatar-topbar-svg',`Avatar de ${student?.displayName||'élève'}`)}</span><span class="student-mini-copy"><span>${esc(student?.displayName||'Élève')}</span><small>Mon profil</small></span></a><button id="studentLogout" class="student-logout v8-student-logout" type="button" aria-label="Se déconnecter">${uiIcon('logout')}</button></div></header><nav class="student-mobile-dock v8-student-dock" aria-label="Navigation élève">${links}</nav>`;
 }
