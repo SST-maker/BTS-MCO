@@ -1,8 +1,8 @@
-const CACHE='mco-quiz-v13-0-visual-open-separation';
-const RUNTIME='mco-quiz-v13-0-open-runtime';
+const CACHE='mco-quiz-v13-1-buzzer-open-separation';
+const RUNTIME='mco-quiz-v13-1-open-runtime';
 const ASSETS=[
   './','./index.html','./offline.html','./teacher.html','./teacher.js','./students.html','./students.js','./progression.html','./progression.js',
-  './pedagogy.html','./pedagogy.js','./open-questions.html','./open-questions.js','./student-open.html','./student-open.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
+  './pedagogy.html','./pedagogy.js','./open-questions.html','./open-questions.js','./student-open.html','./student-open.js','./buzzer.html','./buzzer.js','./buzzer-player.html','./buzzer-player.js','./buzzer-projection.html','./buzzer-projection.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
   './cases.html','./cases.js','./case-projection.html','./case-projection.js','./pdf-export.js',
   './login.html','./login.js','./reset.html','./reset.js','./student-login.html','./student-login.js','./student.html','./student.js',
   './student-profile.html','./student-profile.js','./avatar.js','./lesson.html','./lesson.js','./student-practice.html','./student-practice.js',
