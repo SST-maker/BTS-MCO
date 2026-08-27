@@ -8,7 +8,18 @@ function matchingSides(q){const cfg=q?.responseConfig||{};const left=(cfg.left||
 function seededShuffle(items,seed='mco'){const out=[...items];let h=2166136261;for(const ch of String(seed)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}for(let i=out.length-1;i>0;i--){h=(Math.imul(h,1664525)+1013904223)>>>0;const j=h%(i+1);[out[i],out[j]]=[out[j],out[i]]}if(out.length>1&&out.every((x,i)=>x===items[i]))[out[0],out[1]]=[out[1],out[0]];return out}
 function displayItems(q){return seededShuffle(asItems(q),`${q?.id||q?.prompt||'question'}:order`)}
 function displayMatchingSides(q){const {left,right}=matchingSides(q);return {left,right:seededShuffle(right,`${q?.id||q?.prompt||'question'}:match`)}}
-export function mediaHtml(){return ''}
+function safeMediaUrl(v=''){const u=String(v||'').trim();if(!u)return '';if(/^(https?:\/\/|\.\.?\/|\/|data:image\/)/i.test(u))return u;return ''}
+export function mediaHtml(q,context='player'){
+  const list=Array.isArray(q?.media)?q.media:[];if(!list.length)return '';
+  const cards=list.map((m,i)=>{const kind=String(m?.kind||m?.type||'image').toLowerCase();const src=safeMediaUrl(m?.src||m?.url);const preview=safeMediaUrl(m?.preview||m?.thumbnail||m?.thumb);const alt=esc(m?.alt||m?.title||`Support ${i+1}`);const caption=m?.caption?`<figcaption>${esc(m.caption)}</figcaption>`:'';
+    if(kind==='document'||kind==='pdf'){
+      const shot=preview?`<img src="${esc(preview)}" alt="${alt}" loading="lazy">`:`<div class="media-document-icon">PDF</div>`;return `<figure class="question-media-card document">${shot}<div class="media-document-copy"><small>ANNEXE / DOCUMENT</small><b>${esc(m?.title||`Document ${i+1}`)}</b>${m?.caption?`<span>${esc(m.caption)}</span>`:''}${src?`<a href="${esc(src)}" target="_blank" rel="noopener">Ouvrir le document ↗</a>`:''}</div></figure>`;
+    }
+    if(!src)return '';return `<figure class="question-media-card ${esc(kind)}"><button class="question-media-open" type="button" data-media-open="${esc(src)}" aria-label="Agrandir le support"><img src="${esc(src)}" alt="${alt}" loading="lazy"></button>${caption}</figure>`;
+  }).filter(Boolean).join('');if(!cards)return '';
+  queueMicrotask(()=>document.querySelectorAll('[data-media-open]').forEach(b=>{if(b.dataset.mediaWired)return;b.dataset.mediaWired='1';b.onclick=()=>{const src=b.dataset.mediaOpen;const overlay=document.createElement('div');overlay.className='question-media-lightbox';overlay.innerHTML=`<button type="button" aria-label="Fermer">×</button><img src="${esc(src)}" alt="Support agrandi">`;overlay.onclick=e=>{if(e.target===overlay||e.target.tagName==='BUTTON')overlay.remove()};document.body.appendChild(overlay)}}));
+  return `<section class="question-media-gallery media-${esc(context)}">${cards}</section>`;
+}
 
 export function playerInputHtml(q,{answered=false,response=null}={}){
   const k=responseKind(q),disabled=answered?'disabled':'';

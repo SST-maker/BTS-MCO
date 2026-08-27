@@ -1,5 +1,5 @@
-const CACHE='mco-quiz-v12-9-open-separation';
-const RUNTIME='mco-quiz-v12-9-open-runtime';
+const CACHE='mco-quiz-v13-0-visual-open-separation';
+const RUNTIME='mco-quiz-v13-0-open-runtime';
 const ASSETS=[
   './','./index.html','./offline.html','./teacher.html','./teacher.js','./students.html','./students.js','./progression.html','./progression.js',
   './pedagogy.html','./pedagogy.js','./open-questions.html','./open-questions.js','./student-open.html','./student-open.js','./revisions.html','./revisions.js','./student-revisions.html','./student-revisions.js',
